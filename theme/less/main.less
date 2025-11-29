@@ -1,0 +1,280 @@
+.volna-header {
+	background-color: @white;
+	border-radius: 0 0 32px 32px;
+	position: relative;
+	z-index: 666;
+	@media @md {
+		position: fixed;
+		inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
+		z-index: 666666;
+		border-radius: 0 0 24px 24px;
+		box-shadow: 0 2px 8px fade(@text, 10%);
+	}
+	& > .volna-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		@media @md {
+			height: var(--volna-header-height);
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+		& > .volna-logo {
+			@media @md_ {
+				display: none;
+			}
+			.volna-logo-desc {
+				@media @sm {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.volna-header-nav {
+	@media @md {
+		.volna-modal-wrapp {
+			padding: 0;
+			overflow: hidden;
+			position: relative;
+		}
+		.volna-modal-body {
+			width: 310px;
+			margin-right: 0;
+			height: 100%;
+			overflow: hidden auto;
+			transform: translateX(100%);
+			border-radius: 0;
+			gap: 20px;
+			padding: 12px 16px 20px;
+		}
+		&.volna-active {
+			.volna-modal-body {
+				transform: translateX(0);
+			}
+		}
+	}
+	@media @md_ {
+		all: unset;
+		display: contents;
+		&:not(.volna-active) {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+		.volna-modal-wrapp {
+			all: unset;
+			display: contents;
+		}
+		.volna-modal-body {
+			all: unset;
+			display: contents;
+		}
+	}
+}
+
+.volna-header-menu-wrapp {
+	@media @md_ {
+		order: 1;
+		height: var(--volna-header-height);
+		&.volna-fixed {
+			.volna-header-menu-body {
+				position: fixed;
+				inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
+				z-index: 666;
+				box-shadow: 0 2px 8px fade(@text, 10%);
+				background-color: @white;
+				border-radius: 0 0 32px 32px;
+				overflow: hidden;
+				.volna-container {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+.volna-header-menu-body {
+	@media @md_ {
+		transition: box-shadow 0.4s;
+		box-shadow: 0 2px 8px fade(@text, 0%);
+	}
+	.volna-container {
+		display: contents;
+	}
+}
+
+.volna-header-menu {
+	display: flex;
+	flex-direction: column;
+	@media @md_ {
+		margin: 0 -24px;
+		justify-content: space-between;
+		flex-direction: row;
+	}
+	& > li {
+		@media @md_ {
+			display: flex;
+			flex-direction: column;
+			height: var(--volna-header-height);
+		}
+		& > a {
+			display: flex;
+			padding: 8px 24px;
+			flex: auto;
+			align-items: center;
+			color: inherit;
+			transition: color 0.4s;
+			font-weight: 500;
+			gap: 8px;
+			@media @md {
+				padding: 12px 16px;
+				margin: 0 -16px;
+				font-size: 18px;
+				font-weight: 600;
+				justify-content: space-between;
+			}
+			&:hover {
+				color: @link;
+			}
+		}
+		svg {
+			display: none;
+		}
+	}
+	.menu-item-object-page {
+		@media @md {
+			svg {
+				display: block;
+			}
+		}
+	}
+}
+
+.volna-head {
+	display: flex;
+	height: 68px;
+	border-bottom: solid 1px fade(@darkGray, 5%);
+	align-items: center;
+	gap: 10px;
+	@media @md {
+		flex-direction: column;
+		gap: 20px;
+		align-items: unset;
+	}
+	.volna-logo {
+		@media @md {
+			order: 1;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 20px;
+		}
+	}
+}
+
+.volna-logo {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	color: inherit;
+	line-height: 1.2;
+	font-weight: 500;
+	margin-right: auto;
+	img {
+		max-width: 168px;
+	}
+}
+
+.volna-header-address {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	line-height: 1.2;
+	font-weight: 500;
+	@media @md {
+		padding: 24px 0;
+		border-bottom: solid 1px @border;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+	svg {
+		color: @link;
+	}
+}
+
+.volna-header-contacts {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	@media @md {
+		gap: 6px;
+	}
+}
+
+.volna-header-tel {
+	display: flex;
+	align-items: center;
+	color: inherit;
+	white-space: nowrap;
+	gap: 10px;
+	font-size: 1.2;
+	font-weight: 700;
+	font-size: 16px;
+	transition: color 0.4s;
+	&:hover {
+		color: @link;
+	}
+	svg {
+		color: @link;
+	}
+}
+
+.volna-header-regime {
+	font-size: 12px;
+	line-height: 1.2;
+	@media @md {
+		margin-left: 34px;
+	}
+}
+
+.volna-messengers {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	a {
+		display: flex;
+		width: 24px;
+		transition: opacity 0.4s;
+		@media @md {
+			width: 32px;
+		}
+		&:hover {
+			opacity: 0.7;
+		}
+		img {
+			width: 100%;
+		}
+	}
+}
+
+.volna-header-nav-open {
+	display: flex;
+	svg {
+		--size: 36px;
+	}
+}
+
+.volna-header-nav-close {
+	position: absolute;
+	right: 318px;
+	top: 12px;
+	display: flex;
+	color: @white;
+	svg {
+		--size: 36px;
+	}
+}

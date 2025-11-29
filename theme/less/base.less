@@ -1,0 +1,188 @@
+/* base */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	@media @md_ {
+		.volna-scrollbar;
+	}
+	&:after,
+	&:before {
+		box-sizing: inherit;
+	}
+}
+
+html {
+	overflow-y: scroll;
+	-webkit-tap-highlight-color: transparent;
+	display: flex;
+	position: relative;
+	scroll-padding-top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height));
+	margin: 0 !important;
+	@media @xl {
+		@media @md_ {
+			font-size: 1.08vw;
+		}
+	}
+}
+
+body {
+	font-family: @ff;
+	color: @text;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-font-smoothing: subpixel-antialiased;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	min-width: var(--volna-app-min-width);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+	padding-top: var(--wp-admin--admin-bar--height, 0px);
+	background: @white;
+	font-size: 14px;
+	line-height: 1.6;
+	@media @md {
+		padding-top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height));
+	}
+}
+
+#wpadminbar {
+	position: fixed !important;
+	min-width: var(--volna-app-min-width);
+}
+
+a {
+	color: @link;
+	text-decoration: none;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+	outline: 0;
+	&:focus {
+		outline: none;
+	}
+	&.focus-visible {
+		outline: 2px dashed @outline;
+		outline-offset: 2px;
+	}
+}
+
+input,
+button,
+select,
+textarea {
+	color: @text;
+	font: inherit;
+	margin: 0;
+}
+
+input {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+::-moz-placeholder {
+	color: @placeholder;
+}
+:-ms-input-placeholder {
+	color: @placeholder;
+}
+::-webkit-input-placeholder {
+	color: @placeholder;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: transparent;
+}
+
+button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
+	all: unset;
+	box-sizing: border-box;
+	user-select: none;
+	cursor: pointer;
+	appearance: button;
+}
+
+button[disabled],
+input[disabled] {
+	cursor: default;
+	pointer-events: none;
+}
+
+img {
+	border: 0;
+	max-width: 100%;
+	height: auto;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+use {
+	fill: currentColor;
+}
+
+svg {
+	flex: none;
+}
+
+b,
+strong {
+	font-weight: 700;
+}
+
+.swiper {
+	margin: 0;
+	min-width: 0;
+}
+
+.swiper-slide {
+	height: auto;
+}
+
+.glightbox-mobile .goverlay,
+.goverlay {
+	background: @filter;
+	height: auto;
+	width: auto;
+	inset: 0;
+}
+
+.glightbox-container {
+	height: auto;
+	bottom: 0;
+}
+
+.gslide-description[style='max-width: 1440;'] {
+	max-width: 1440px !important;
+}
+
+.gslide-title {
+	&:last-child {
+		margin: 0;
+	}
+}
+
+.glightbox-clean .gslide-title {
+	font-family: @ff;
+}
+
+.glightbox-clean .gslide-media {
+	box-shadow: none;
+}

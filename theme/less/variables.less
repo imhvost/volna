@@ -1,0 +1,50 @@
+@white: #fff;
+@black: #000;
+
+@darkGray: #262626;
+
+@text: #323232;
+@title: #34293d;
+@placeholder: fade(#161616, 60%);
+
+@link: #1d7af2;
+@linkH: #0161dc;
+
+@border: #b1bdcc;
+
+@bg: #f7f7f7;
+
+@outline: @link;
+
+@red: #fa3a5c;
+
+@filter: fade(@black, 80%);
+
+@ff: 'Manrope', sans-serif;
+
+@xl: ~'(max-width: 1439px)';
+@lg: ~'(max-width: 1199px)';
+@md: ~'(max-width: 1023px)';
+@sm: ~'(max-width: 767px)';
+@xs: ~'(max-width: 479px)';
+
+@xl_: ~'(min-width: 1440px)';
+@lg_: ~'(min-width: 1200px)';
+@md_: ~'(min-width: 1024px)';
+@sm_: ~'(min-width: 768px)';
+@xs_: ~'(min-width: 480px)';
+
+:root {
+	--volna-app-min-width: 390px;
+	--volna-container-padding: 40px;
+	--volna-header-height: 48px;
+	--volna-content-gap: 16px;
+	--volna-container-width: 1330px;
+	--volna-scrollbar-color: @text;
+	@media @md {
+		--volna-container-padding: 16px;
+		--volna-content-gap: 12px;
+		--volna-header-height: 60px;
+	}
+	--plyr-color-main: @link;
+}

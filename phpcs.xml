@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards">
+	<description>Generally-applicable sniffs for WordPress plugins.</description>
+
+	<!-- What to scan -->
+	<file>./theme/</file>
+	<exclude-pattern>plugins/*</exclude-pattern>
+	<exclude-pattern>theme/css/*</exclude-pattern>
+	<exclude-pattern>theme/fonts/*</exclude-pattern>
+	<exclude-pattern>theme/vendor/*</exclude-pattern>
+	<exclude-pattern>theme/img/*</exclude-pattern>
+	<exclude-pattern>theme/js/*</exclude-pattern>
+	<exclude-pattern>theme/languages/*</exclude-pattern>
+	<exclude-pattern>theme/less/*</exclude-pattern>
+	<exclude-pattern>theme/*.css</exclude-pattern>
+	<exclude-pattern>theme/*.png</exclude-pattern>
+	<exclude-pattern>theme/*.json</exclude-pattern>
+	<exclude-pattern>theme/*.md</exclude-pattern>
+	<exclude-pattern>node_modules/</exclude-pattern>
+	<exclude-pattern>vendor/</exclude-pattern>
+	<exclude-pattern>plugins/</exclude-pattern>
+
+	<!-- How to scan -->
+	<!-- Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
+	<!-- Annotated ruleset: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
+	<arg value="sp"/> <!-- Show sniff and progress -->
+	<!-- <arg name="basepath" value="./"/> -->
+	<!-- Strip the file paths down to the relevant bit -->
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="16"/><!-- Enables parallel processing when available for faster results. -->
+
+	<!-- Rules: Check PHP version compatibility -->
+	<!-- https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
+	<config name="testVersion" value="7.4-"/>
+
+	<!-- Rules: Check PHP version compatibility-->
+	<!-- https://github.com/PHPCompatibility/PHPCompatibilityWP -->
+	<!-- <rule ref="PHPCompatibilityWP"/> -->
+	<rule ref="WordPress"/>
+
+	<!-- Rules: WordPress Coding Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
+	<config name="minimum_supported_wp_version" value="5.4"/>
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress">
+		<!-- <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/> -->
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<!-- Value: replace the text domain used. -->
+			<property name="text_domain" type="array" value="volna"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="true"/>
+		</properties>
+	</rule>
+	
+	<rule ref="Squiz.Commenting.InlineComment.InvalidEndChar">
+		<severity>0</severity>
+	</rule>
+</ruleset>

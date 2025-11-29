@@ -1,0 +1,42 @@
+.volna-scrollbar {
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+		background-color: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--volna-scrollbar-color);
+		border: solid 2px transparent;
+		background-clip: content-box;
+	}
+}
+
+.volna-scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.volna-ellipsis(@lines) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: @lines;
+	-webkit-box-orient: vertical;
+}
+
+.volna-placeholder(@rules) {
+	&::-webkit-input-placeholder {
+		@rules();
+	}
+	&:-moz-placeholder {
+		@rules();
+	}
+	&::-moz-placeholder {
+		@rules();
+	}
+	&:-ms-input-placeholder {
+		@rules();
+	}
+}

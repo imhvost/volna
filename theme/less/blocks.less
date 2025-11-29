@@ -1,0 +1,157 @@
+.volna-section {
+	--padding: 40px;
+	padding: var(--padding) 0;
+	@media @md {
+		--padding: 32px;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	a {
+		text-decoration: none;
+	}
+}
+
+.volna-hero {
+	padding: 0;
+	margin-top: calc(-1 * var(--offset));
+	position: relative;
+	--offset: 0px;
+	&:first-child {
+		--offset: 32px;
+		@media @md {
+			--offset: 24px;
+		}
+	}
+}
+
+.volna-hero-slider {
+	margin: 0;
+}
+
+.volna-hero-slide {
+	position: relative;
+	padding-top: calc(var(--offset) + var(--padding));
+	padding-bottom: 190px;
+	position: relative;
+	min-height: 564px;
+	background-color: @title;
+	color: @white;
+	@media @md {
+		padding-bottom: 120px;
+		min-height: 0;
+	}
+	.volna-container {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		align-items: flex-start;
+	}
+}
+
+.volna-hero-slide-img {
+	position: absolute;
+	inset: 0;
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+		z-index: 1;
+	}
+}
+
+.volna-hero-slide-title {
+	.volna-h1;
+	color: inherit;
+	max-width: 600px;
+}
+
+.volna-hero-slide-desc {
+	padding: 10px;
+	border-radius: 100px;
+	backdrop-filter: blur(4px);
+	background-color: fade(@white, 12%);
+	max-width: 600px;
+	font-size: 16px;
+	line-height: 1.2;
+	font-weight: 500;
+}
+
+.volna-hero-slide-btns {
+	display: flex;
+	gap: 12px 20px;
+	flex-wrap: wrap;
+	.volna-btn {
+		@media @xs {
+			width: 100%;
+		}
+	}
+}
+
+.volna-hero-slider-nav {
+	position: absolute;
+	inset: auto 0 118px;
+	pointer-events: none;
+	z-index: 6;
+	@media @md {
+		bottom: 32px;
+	}
+}
+
+.volna-hero-slider-pagination {
+	display: flex;
+	gap: 10px;
+	span {
+		width: 40px;
+		height: 28px;
+		text-align: center;
+		cursor: pointer;
+		color: @border;
+		font-size: 16px;
+		line-height: 1.2;
+		font-weight: 700;
+		border-radius: 0;
+		background: none;
+		opacity: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		transition: color 0.4s;
+		pointer-events: auto;
+		user-select: none;
+		&:hover {
+			color: @white;
+		}
+		i {
+			flex: none;
+			height: 2px;
+			background-color: currentColor;
+			border-radius: 2px;
+			position: relative;
+			&:before {
+				content: '';
+				position: absolute;
+				inset: 0 auto 0 0;
+				background-color: @link;
+				border-radius: inherit;
+			}
+		}
+		&.swiper-pagination-bullet-active {
+			color: @white;
+			i {
+				&:before {
+					width: calc(100% * var(--autoplay-progress));
+				}
+			}
+		}
+	}
+}

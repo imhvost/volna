@@ -1,0 +1,25 @@
+{
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.7",
+		"wp-coding-standards/wpcs": "^3.0",
+		"phpcompatibility/phpcompatibility-wp": "*"
+	},
+	"scripts": {
+		"lint": "phpcs"
+	},
+	"config": {
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"extra": {
+		"phpcodesniffer-config": {
+			"installed_paths": [
+				"vendor/wp-coding-standards/wpcs",
+				"vendor/phpcompatibility/phpcompatibility-wp"
+			]
+		}
+	}
+}

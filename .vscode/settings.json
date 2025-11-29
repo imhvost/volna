@@ -1,0 +1,77 @@
+{
+	"html.hover.documentation": false,
+	"html.hover.references": false,
+	"css.hover.documentation": false,
+	"css.hover.references": false,
+	"less.hover.documentation": false,
+	"less.hover.references": false,
+	"files.exclude": {
+		"node_modules": true,
+		"**/vendor/**": true
+	},
+	"search.exclude": {
+		"node_modules": true,
+		"**/vendor/**": true
+	},
+	"files.watcherExclude": {
+		"node_modules": true,
+		"**/vendor/**": true
+	},
+	"files.eol": "\n",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit",
+		"source.fixAll.php": "explicit"
+	},
+	"editor.tabSize": 2,
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.snippetSuggestions": "top",
+	"editor.unicodeHighlight.ambiguousCharacters": false,
+	"editor.stickyScroll.enabled": false,
+	"window.zoomLevel": -1,
+	"security.workspace.trust.untrustedFiles": "open",
+
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+
+	"php.validate.executablePath": "X:/php/php.exe",
+	"[php]": {
+		"editor.defaultFormatter": "valeryanm.vscode-phpsab",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": false
+	},
+
+	"phpsab.standard": "WordPress",
+	"phpsab.snifferEnabled": true,
+	"phpsab.beautifierEnabled": false,
+
+	"intelephense.format.enable": true,
+	// "intelephense.format.braces": "k&r",
+	"intelephense.diagnostics.undefinedMethods": false,
+	"intelephense.stubs": [
+		"Core",
+		"date",
+		"dom",
+		"filter",
+		"hash",
+		"json",
+		"libxml",
+		"mbstring",
+		"pcre",
+		"PDO",
+		"Reflection",
+		"session",
+		"SimpleXML",
+		"SPL",
+		"standard",
+		"tokenizer",
+		"xml",
+		"wordpress"
+	],
+	"intelephense.environment.includePaths": [
+		"x:\\xampp\\htdocs\\work\\fl\\lac\\wp-content\\themes\\lac\\src\\theme\\vendor\\carbon-fields\\"
+	]
+}
