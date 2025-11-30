@@ -64,7 +64,7 @@ add_action(
 				'menu_icon'          => 'dashicons-palmtree',
 				'menu_position'      => 5,
 				'publicly_queryable' => false,
-				'supports'           => array( 'title', 'thumbnail', 'editor' ),
+				'supports'           => array( 'title', 'thumbnail', 'editor', 'excerpt' ),
 				'show_in_rest'       => false,
 			)
 		);
@@ -81,7 +81,7 @@ add_action(
 				'menu_icon'          => 'dashicons-store',
 				'menu_position'      => 5,
 				'publicly_queryable' => false,
-				'supports'           => array( 'title', 'thumbnail', 'editor' ),
+				'supports'           => array( 'title', 'thumbnail', 'editor', 'excerpt' ),
 				'show_in_rest'       => false,
 			)
 		);

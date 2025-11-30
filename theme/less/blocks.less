@@ -256,6 +256,14 @@
 		.volna-about-card-content {
 			grid-template-rows: 1fr;
 		}
+		.volna-about-card-img {
+			&:before {
+				opacity: 0;
+			}
+			&:after {
+				opacity: 1;
+			}
+		}
 	}
 	&:has(.volna-about-card-img) {
 		background: none;
@@ -265,11 +273,20 @@
 .volna-about-card-img {
 	position: absolute;
 	inset: 0;
+	&:before,
 	&:after {
 		content: '';
 		position: absolute;
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
 		inset: 0;
+		transition: opacity 0.4s;
+		z-index: 1;
+	}
+	&:before {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+	}
+	&:after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 36.18%, rgba(0, 0, 0, 0.8) 100%);
+		opacity: 0;
 	}
 }
 
