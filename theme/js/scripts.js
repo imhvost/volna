@@ -128,10 +128,10 @@ $('.volna-hero-slider').each(function () {
 		fadeEffect: {
 			crossFade: true,
 		},
-		autoplay: {
-			delay: 6000,
-			disableOnInteraction: false,
-		},
+		// autoplay: {
+		// 	delay: 6000,
+		// 	disableOnInteraction: false,
+		// },
 		pagination: {
 			el: wrapp.find('.volna-hero-slider-pagination')[0],
 			clickable: true,

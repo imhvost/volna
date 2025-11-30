@@ -62,12 +62,12 @@ function volna_get_section_fields( $without_bg = true ) {
 				Field::make( 'color', 'volna_section_bg', __( 'Фон блокa', 'volna' ) )
 					->set_palette( array( '#F7F7F7' ) )
 					->set_conditional_logic(
-						$without_bg ? array(
+						$without_bg ? array() : array(
 							array(
 								'field' => 'volna_section_bg_show',
 								'value' => true,
 							),
-						) : array()
+						)
 					),
 			)
 		);
@@ -79,7 +79,6 @@ function volna_get_section_fields( $without_bg = true ) {
 add_action(
 	'carbon_fields_register_fields',
 	function () {
-
 		/* options */
 		Container::make( 'theme_options', __( 'Опции темы', 'volna' ) )
 			->add_tab(

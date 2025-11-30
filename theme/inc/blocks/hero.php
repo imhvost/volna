@@ -79,7 +79,18 @@ add_action(
 											</div>
 										<?php endif; ?>
 										<div class="volna-container">
-											<?php get_template_part( 'template-parts/section', 'title', array( 'fields' => $fields ) ); ?>
+											<?php
+											get_template_part(
+												'template-parts/section',
+												'title',
+												array(
+													'fields' => array(
+														'volna_section_title' => $item['volna_section_title'],
+														'volna_section_title_tag' => $item['volna_section_title_tag'],
+													),
+												)
+											);
+											?>
 											<?php if ( $item['desc'] ) : ?>
 												<div class="volna-hero-slide-desc">
 													<?php echo wp_kses_post( nl2br( $item['desc'] ) ); ?>
