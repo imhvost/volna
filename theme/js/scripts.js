@@ -128,10 +128,10 @@ $('.volna-hero-slider').each(function () {
 		fadeEffect: {
 			crossFade: true,
 		},
-		// autoplay: {
-		// 	delay: 6000,
-		// 	disableOnInteraction: false,
-		// },
+		autoplay: {
+			delay: 6000,
+			disableOnInteraction: false,
+		},
 		pagination: {
 			el: wrapp.find('.volna-hero-slider-pagination')[0],
 			clickable: true,
@@ -141,6 +141,150 @@ $('.volna-hero-slider').each(function () {
 			autoplayTimeLeft(s, time, progress) {
 				wrapp.css('--autoplay-progress', 1 - progress);
 			},
+		},
+	});
+});
+
+/* select */
+
+$(document).on('click', '.volna-select-toggle', function (event) {
+	event.preventDefault();
+	const select = $(this).closest('.volna-select');
+	if (select.hasClass('volna-active')) {
+		$('.volna-select').removeClass('volna-active');
+	} else {
+		$('.volna-select').removeClass('volna-active');
+		select.addClass('volna-active');
+	}
+});
+
+$(document).on('change', '.volna-select-input', function (event) {
+	const t = $(this);
+	const select = t.closest('.volna-select');
+	const value = t.val();
+	const title = select.find('.volna-select-toggle-title');
+	const titles = [];
+	const multiple = select.hasClass('volna-select_multiple');
+	if (!multiple) {
+		select.find('.volna-select-input:checked').not(t).prop('checked', false);
+		if (!t.prop('checked')) {
+			t.prop('checked', true);
+		}
+	}
+	select.find('.volna-select-input:checked').each(function () {
+		titles.push($(this).closest('.volna-select-option').find('.volna-select-option-title').text());
+	});
+
+	title.text(titles.join(', '));
+
+	if (multiple) {
+		if (titles.length) {
+			select.addClass('volna-value');
+		} else {
+			select.removeClass('volna-value');
+		}
+		return;
+	}
+	$('.volna-select').removeClass('volna-active');
+	if (value === '*') {
+		select.removeClass('volna-value');
+		if (title.data('title')) {
+			title.text(title.data('title'));
+		}
+	} else {
+		select.addClass('volna-value');
+	}
+});
+
+$(document).on('click', function (event) {
+	if ($(event.target).closest('.volna-select.volna-active').length) {
+		return;
+	}
+	$('.volna-select').removeClass('volna-active');
+});
+
+/* mask */
+
+if (window.Maska) {
+	const { MaskInput } = window.Maska;
+
+	$('[type="tel"]').each(function () {
+		const mask = new MaskInput(this, {
+			mask: '+7 (###) ###-##-##',
+		});
+	});
+}
+
+/* tel input */
+
+$(document).on('input', '[type="tel"]', function () {
+	this.setCustomValidity('');
+});
+
+/* contacts-form */
+
+$(document).on('submit', '.volna-contact-form', function (e) {
+	e.preventDefault();
+
+	if (!window.wp_ajax) {
+		return;
+	}
+
+	const t = $(this);
+
+	const telInput = t.find('[type="tel"]');
+
+	if (telInput.length && window.Maska) {
+		const { Mask } = window.Maska;
+
+		const mask = new Mask({ mask: '+7 (###) ###-##-##' });
+		const value = telInput.val();
+
+		telInput[0].setCustomValidity('');
+
+		if (!mask.completed(value)) {
+			const alertMessage = telInput.data('alert');
+
+			if (alertMessage) {
+				telInput[0].setCustomValidity(alertMessage);
+				telInput[0].reportValidity();
+				return;
+			} else {
+				telInput.focus();
+				return;
+			}
+		}
+	}
+
+	if (t.hasClass('volna-ajax-process')) {
+		return;
+	}
+	t.addClass('volna-ajax-process');
+
+	const formData = new FormData(t[0]);
+
+	const url = new URL(window.location.href);
+
+	formData.append('action', 'volna_contact_form');
+	formData.append('nonce', wp_ajax.nonce);
+
+	$.ajax({
+		url: wp_ajax.url,
+		type: 'POST',
+		data: formData,
+		processData: false,
+		contentType: false,
+		success: function (answer) {
+			// console.log(answer);
+			if (answer?.success) {
+				volnaModal.openModal('volna-modal-sent');
+				t.find('input.volna-input').val('');
+			}
+			t.removeClass('volna-ajax-process');
+		},
+		error: error => {
+			console.error(error);
+			t.removeClass('volna-ajax-process');
 		},
 	});
 });

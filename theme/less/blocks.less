@@ -300,3 +300,86 @@
 .volna-about-card-desc {
 	line-height: 1.2;
 }
+
+.volna-presentation-main {
+	--padding: 40px;
+	display: flex;
+	justify-content: space-between;
+	min-height: 318px;
+	padding: var(--padding);
+	border-radius: 32px;
+	background-color: @link;
+	color: @white;
+	@media @md {
+		--padding: 24px;
+		min-height: unset;
+		border-radius: 24px;
+		flex-direction: column;
+	}
+}
+
+.volna-presentation-body {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	flex: auto;
+	min-width: 0;
+	max-width: 588px;
+	@media @md {
+		gap: 24px;
+		max-width: 100%;
+	}
+	.volna-section-title {
+		color: inherit;
+		text-align: left;
+	}
+}
+
+.volna-presentation-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.volna-presentation-form-inputs {
+	display: grid;
+	gap: 16px;
+	@media @sm_ {
+		grid-template-columns: 1fr 1fr max-content;
+	}
+}
+
+.volna-presentation-img {
+	flex: none;
+	display: flex;
+	width: 536px;
+	align-self: flex-end;
+	margin: 0 calc(-1 * var(--padding)) calc(-1 * var(--padding)) 0;
+	height: 0;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	@media @md {
+		height: auto;
+		max-width: 100%;
+	}
+}
+
+.volna-plab-iframe {
+	display: flex;
+	border-radius: 32px;
+	overflow: hidden;
+	will-change: transform;
+	background-color: @link;
+	@media @md {
+		border-radius: 24px;
+	}
+	iframe {
+		width: 100%;
+		border: 0;
+		aspect-ratio: 1280/718;
+		@media @sm {
+			aspect-ratio: 1;
+		}
+	}
+}

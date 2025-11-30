@@ -470,3 +470,25 @@ function volna_plural( $number, $forms ) {
 			return ( 1 === $number ) ? $forms[0] : $forms[1];
 	}
 }
+
+/**
+ * Check is localhost.
+ *
+ * @return bool
+ */
+function volna_is_localhost(): bool {
+	$whitelist = array(
+		'127.0.0.1',
+		'::1',
+		'localhost',
+	);
+
+	if ( isset( $_SERVER['REMOTE_ADDR'] ) && in_array( $_SERVER['REMOTE_ADDR'], $whitelist, true ) ) {
+		return true;
+	}
+	if ( isset( $_SERVER['HTTP_HOST'] ) && preg_match( '/(localhost|\.test|\.local)/i', sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) ) ) {
+		return true;
+	}
+
+	return false;
+}

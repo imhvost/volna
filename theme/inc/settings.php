@@ -138,6 +138,7 @@ add_action(
 				'swiper-bundle.min.js',
 				// 'glightbox.min.js',
 				'focus-visible.min.js',
+				'maska.js',
 			);
 
 		foreach ( $js_plugins as $item ) {

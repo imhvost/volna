@@ -34,6 +34,24 @@ add_action(
 			)
 		);
 
+		register_taxonomy(
+			'volna-land-category',
+			array( 'volna-land' ),
+			array(
+				'labels'             => array(
+					'name'          => __( 'Категории', 'volna' ),
+					'singular_name' => __( 'Категория', 'volna' ),
+					'menu_name'     => __( 'Категория', 'volna' ),
+				),
+				'public'             => true,
+				'show_ui'            => true,
+				'show_in_rest'       => false,
+				'hierarchical'       => true,
+				'publicly_queryable' => false,
+				'show_admin_column'  => true,
+			)
+		);
+
 		register_post_type(
 			'volna-land',
 			array(
@@ -47,7 +65,7 @@ add_action(
 				'menu_position'      => 5,
 				'publicly_queryable' => false,
 				'supports'           => array( 'title', 'thumbnail', 'editor' ),
-				'show_in_rest'       => true,
+				'show_in_rest'       => false,
 			)
 		);
 
@@ -64,7 +82,7 @@ add_action(
 				'menu_position'      => 5,
 				'publicly_queryable' => false,
 				'supports'           => array( 'title', 'thumbnail', 'editor' ),
-				'show_in_rest'       => true,
+				'show_in_rest'       => false,
 			)
 		);
 	}
