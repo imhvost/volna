@@ -15,11 +15,21 @@ function volnaConvertPxToRem(px) {
 
 /* modal */
 
-const volnaFixedElements = '.volna-header, #wpadminbar, .volna-home-slider';
+function getFixedElementsSelector() {
+	const selectors = ['#wpadminbar'];
+	if (window.matchMedia('(min-width:1024px)').matches) {
+		selectors.push('.volna-header.volna-fixed .volna-header-menu-body');
+	} else {
+		selectors.push('.volna-header');
+	}
+	return selectors.join(', ');
+}
+
+console.log(getFixedElementsSelector());
 
 const volnaModal = new AccessibleMinimodal({
 	disableScroll: {
-		jumpingElements: volnaFixedElements,
+		jumpingElements: getFixedElementsSelector(),
 	},
 	classes: {
 		modal: 'volna-modal',
@@ -56,9 +66,10 @@ volnaFixedHeader();
 $(window).on('load scroll resize', volnaFixedHeader);
 
 function volnaFixedHeader() {
-	const header = $('.volna-header-menu-wrapp');
+	const header = $('.volna-header');
+	const target = window.matchMedia('(min-width:1024px)').matches ? $('.volna-header-menu-wrapp') : header;
 	const barHeight = volnaGetPxCssVar('--wp-admin--admin-bar--height') || 0;
-	if ($(window).scrollTop() >= header.offset()?.top - barHeight) {
+	if ($(window).scrollTop() >= target.offset()?.top - barHeight) {
 		header.addClass('volna-fixed');
 	} else {
 		header.removeClass('volna-fixed');
@@ -285,6 +296,50 @@ $(document).on('submit', '.volna-contact-form', function (e) {
 		error: error => {
 			console.error(error);
 			t.removeClass('volna-ajax-process');
+		},
+	});
+});
+
+/* volna-product-item */
+
+$(document).on('click', '.volna-product-item', function (e) {
+	e.preventDefault();
+
+	if (!window.wp_ajax) {
+		return;
+	}
+
+	const t = $(this);
+
+	if ($('html').find('volna-product-loading').length) {
+		return;
+	}
+	t.addClass('volna-product-loading');
+
+	const formData = new FormData();
+	const url = new URL(t.attr('href'));
+
+	formData.append('target_post_id', t.data('target-post-id'));
+	formData.append('target_post_type', t.data('target-post-type'));
+	formData.append('action', 'volna_get_product');
+	formData.append('nonce', wp_ajax.nonce);
+
+	$.ajax({
+		url: wp_ajax.url,
+		type: 'POST',
+		data: formData,
+		processData: false,
+		contentType: false,
+		success: function (answer) {
+			if (answer) {
+				window.history.replaceState({}, '', url);
+				$('#volna-product-modal .volna-modal-body').html(answer);
+				volnaModal.openModal('volna-product-modal');
+			}
+			t.removeClass('volna-product-loading');
+		},
+		error: error => {
+			t.removeClass('volna-product-loading');
 		},
 	});
 });

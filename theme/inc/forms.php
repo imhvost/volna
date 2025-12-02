@@ -9,9 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'wp_ajax_nopriv_volna_contact_form', 'volna_contact_form' );
-add_action( 'wp_ajax_volna_contact_form', 'volna_contact_form' );
-
 /**
  * Ajax form function
  *
@@ -92,3 +89,6 @@ function volna_contact_form() {
 
 	wp_send_json_error( array( 'message' => esc_html__( 'Ошибка отправки.', 'volna' ) ) );
 }
+
+add_action( 'wp_ajax_nopriv_volna_contact_form', 'volna_contact_form' );
+add_action( 'wp_ajax_volna_contact_form', 'volna_contact_form' );

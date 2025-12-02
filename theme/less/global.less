@@ -787,3 +787,169 @@
 		}
 	}
 }
+
+.volna-land-item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	border-radius: 32px 32px 0 0;
+	color: @title;
+	transition: color 0.4s;
+	&:hover {
+		color: @link;
+		.volna-land-item-img {
+			&:after {
+				opacity: 1;
+			}
+			svg {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+	}
+	&.volna-product-loading {
+		.volna-land-item-img {
+			svg {
+				opacity: 0;
+				transform: scale(0.8);
+			}
+			.volna-loading {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+	}
+}
+
+.volna-land-item-img {
+	border-radius: 32px;
+	aspect-ratio: 412/280;
+	background-color: @title;
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background-color: fade(@black, 40%);
+		opacity: 0;
+		transition: opacity 0.4s;
+	}
+	&:has(img) {
+		background: none;
+	}
+	svg {
+		--size: 68px;
+		color: @white;
+		position: absolute;
+		left: calc(50% - 0.5 * var(--size));
+		top: calc(50% - 0.5 * var(--size));
+		transition:
+			opacity 0.4s,
+			transform 0.4s;
+		opacity: 0;
+		transform: scale(0.8);
+		z-index: 2;
+	}
+	.volna-loading {
+		--size: 48px;
+		--color: @white;
+		position: absolute;
+		left: calc(50% - 0.5 * var(--size));
+		top: calc(50% - 0.5 * var(--size));
+		opacity: 0;
+		transition:
+			opacity 0.4s,
+			transform 0.4s;
+		transform: scale(0.8);
+	}
+}
+
+.volna-land-item-category {
+	position: absolute;
+	top: 32px;
+	right: 0;
+	max-width: calc(100% - 12px);
+	z-index: 1;
+	border-radius: 12px 0 0 12px;
+	padding: 10px;
+	background-color: @white;
+	color: @link;
+	font-size: 16px;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+.volna-land-item-head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	justify-content: space-between;
+	white-space: nowrap;
+}
+
+.volna-land-item-area {
+	font-size: 22px;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+.volna-land-item-prices {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.volna-land-item-price-old {
+	font-weight: 500;
+	text-decoration: line-through;
+}
+
+.volna-land-item-price {
+	color: @link;
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.volna-land-item-excerpt {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.2;
+	.volna-ellipsis(2);
+}
+
+.volna-lands-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 40px 20px;
+	@media @md {
+		gap: 32px 12px;
+	}
+}
+
+.volna-read-more-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.volna-loading {
+	--size: 24px;
+	--color: @link;
+	width: var(--size);
+	padding: calc(0.1666 * var(--size));
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--color);
+	--_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+	-webkit-mask: var(--_m);
+	mask: var(--_m);
+	-webkit-mask-composite: source-out;
+	mask-composite: subtract;
+	animation: volna-modal-loading 1s infinite linear;
+}
+@keyframes volna-modal-loading {
+	to {
+		transform: rotate(1turn);
+	}
+}

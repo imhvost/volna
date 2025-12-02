@@ -23,7 +23,12 @@ if ( $target_post_id ) :
 		$category = $category[0];
 	}
 	?>
-<a href="<?php echo esc_url( get_the_permalink() ); ?>?land=<?php echo esc_attr( $target_post_id ); ?>" class="volna-land-item">
+<a
+	href="<?php echo esc_url( get_the_permalink() ); ?>?land=<?php echo esc_attr( $target_post_id ); ?>"
+	class="volna-land-item volna-product-item"
+	data-target-post-id="<?php echo esc_attr( $target_post_id ); ?>"
+	data-target-post-type="volna-land"
+>
 	<div class="volna-land-item-img volna-cover-img">
 		<?php
 		if ( has_post_thumbnail( $target_post_id ) ) {
@@ -36,6 +41,7 @@ if ( $target_post_id ) :
 			</div>
 		<?php endif; ?>
 		<svg class="volna-icon"><use xlink:href="#icon-zoom-in"/></svg>
+		<div class="volna-loading"></div>
 	</div>
 	<?php if ( $volna_area || $volna_price || $volna_price_old ) : ?>
 		<div class="volna-land-item-head">

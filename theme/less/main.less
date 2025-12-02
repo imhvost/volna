@@ -10,6 +10,23 @@
 		border-radius: 0 0 24px 24px;
 		box-shadow: 0 2px 8px fade(@text, 10%);
 	}
+	@media @md_ {
+		&.volna-fixed {
+			.volna-header-menu-body {
+				position: fixed;
+				inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
+				z-index: 666;
+				box-shadow: 0 2px 8px fade(@text, 10%);
+				background-color: @white;
+				border-radius: 0 0 32px 32px;
+				overflow: hidden;
+				.volna-container {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+	}
 	& > .volna-container {
 		width: 100%;
 		display: flex;
@@ -79,21 +96,6 @@
 	@media @md_ {
 		order: 1;
 		height: var(--volna-header-height);
-		&.volna-fixed {
-			.volna-header-menu-body {
-				position: fixed;
-				inset: var(--wp-admin--admin-bar--height, 0px) 0 auto;
-				z-index: 666;
-				box-shadow: 0 2px 8px fade(@text, 10%);
-				background-color: @white;
-				border-radius: 0 0 32px 32px;
-				overflow: hidden;
-				.volna-container {
-					display: block;
-					width: 100%;
-				}
-			}
-		}
 	}
 }
 
