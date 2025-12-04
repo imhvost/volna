@@ -70,7 +70,7 @@ add_action(
 									</div>
 								<?php endif; ?>
 								<?php if ( $lands ) : ?>
-									<div class="volna-lands-list">
+									<div class="volna-products-list">
 										<?php
 										foreach ( $lands as $target_post_id ) {
 											if ( 'publish' !== get_post_status( $target_post_id ) ) {

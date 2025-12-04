@@ -20,13 +20,13 @@ if ( $target_post_id ) :
 	?>
 <div class="volna-product">
 	<div class="volna-product-head">
-		<div class="volna-product-title">
+		<div class="volna-product-title volna-h2">
 			<?php echo esc_html( get_the_title( $target_post_id ) ); ?>
 		</div>
 		<?php if ( $volna_price || $volna_price_area ) : ?>
 			<div class="volna-product-prices">
 				<?php if ( $volna_price ) : ?>
-					<div class="volna-product-price">
+					<div class="volna-product-price volna-h4">
 						<?php esc_html_e( 'от', 'volna' ); ?>
 						<span>
 							<?php echo esc_html( number_format( $volna_price, 0, '', ' ' ) ); ?> ₽
@@ -100,6 +100,9 @@ if ( $target_post_id ) :
 				</div>
 			</div>
 		<?php endif; ?>
+		<button class="volna-btn" data-modal-open="modal-application" data-post-id="<?php esc_attr( $target_post_id ); ?>">
+			<?php esc_html_e( 'Узнать детали', 'volna' ); ?>
+		</button>
 	</div>
 </div>
 <?php endif; ?>

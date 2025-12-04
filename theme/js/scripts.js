@@ -25,8 +25,6 @@ function getFixedElementsSelector() {
 	return selectors.join(', ');
 }
 
-console.log(getFixedElementsSelector());
-
 const volnaModal = new AccessibleMinimodal({
 	disableScroll: {
 		jumpingElements: getFixedElementsSelector(),
@@ -58,6 +56,20 @@ const volnaModal = new AccessibleMinimodal({
 	multiple: {
 		use: true,
 	},
+	focus: {
+		use: false,
+	},
+});
+
+$('.volna-modal').on('accessible-minimodal:after-close', e => {
+	const target = e.currentTarget;
+	if (target) {
+		$(target).find('.volna-modal-wrapp').scrollTop(0);
+	}
+
+	const url = new URL(window.location.href);
+	url.searchParams.delete('land');
+	window.history.replaceState({}, '', url.toString());
 });
 
 /* header */
@@ -302,25 +314,17 @@ $(document).on('submit', '.volna-contact-form', function (e) {
 
 /* volna-product-item */
 
-$(document).on('click', '.volna-product-item', function (e) {
-	e.preventDefault();
-
+function volnaGetProduct(t, postId, postType) {
 	if (!window.wp_ajax) {
 		return;
 	}
 
-	const t = $(this);
-
-	if ($('html').find('volna-product-loading').length) {
-		return;
-	}
-	t.addClass('volna-product-loading');
+	const url = t ? new URL(t.attr('href')) : '';
 
 	const formData = new FormData();
-	const url = new URL(t.attr('href'));
 
-	formData.append('target_post_id', t.data('target-post-id'));
-	formData.append('target_post_type', t.data('target-post-type'));
+	formData.append('target_post_id', t ? t.data('target-post-id') : postId);
+	formData.append('target_post_type', t ? t.data('target-post-type') : postType);
 	formData.append('action', 'volna_get_product');
 	formData.append('nonce', wp_ajax.nonce);
 
@@ -332,14 +336,85 @@ $(document).on('click', '.volna-product-item', function (e) {
 		contentType: false,
 		success: function (answer) {
 			if (answer) {
-				window.history.replaceState({}, '', url);
-				$('#volna-product-modal .volna-modal-body').html(answer);
+				if (url) {
+					window.history.replaceState({}, '', url);
+				}
+				$('#volna-product-modal .volna-modal-content').html(answer);
+				volnaInitProductGallery();
 				volnaModal.openModal('volna-product-modal');
 			}
-			t.removeClass('volna-product-loading');
+			if (t) {
+				t.removeClass('volna-product-loading');
+			}
 		},
 		error: error => {
-			t.removeClass('volna-product-loading');
+			if (t) {
+				t.removeClass('volna-product-loading');
+			}
 		},
 	});
+}
+
+$(document).on('click', '.volna-product-item', function (e) {
+	e.preventDefault();
+
+	const t = $(this);
+
+	if (t.find('volna-product-loading').length) {
+		return;
+	}
+	t.addClass('volna-product-loading');
+
+	volnaGetProduct(t);
 });
+
+$(document).ready(function () {
+	const params = new URL(window.location.href).searchParams;
+	if (params.get('land')) {
+		volnaGetProduct(null, params.get('land'), 'volna-land');
+	}
+});
+
+/* volna-product-gallery */
+
+function volnaInitProductGallery() {
+	$('.volna-product-gallery').each(function () {
+		const t = $(this);
+		const nav = t.find('.volna-product-gallery-nav');
+		const navSlider = nav.length
+			? new Swiper(nav[0], {
+					speed: 400,
+					slideToClickedSlide: true,
+					watchSlidesProgress: true,
+					slidesPerView: 'auto',
+					spaceBetween: 10,
+				})
+			: null;
+		const slider = new Swiper(t.find('.volna-product-gallery-slider')[0], {
+			speed: 400,
+			spaceBetween: 24,
+			thumbs: {
+				swiper: navSlider,
+			},
+			on: {
+				slideChange: s => {
+					if (!nav.length) {
+						return;
+					}
+
+					const realIndex = s.realIndex;
+					const activeSlide = t.find('.volna-product-gallery-nav-slide').eq(realIndex);
+					const nextSlide = activeSlide.next();
+					const prevSlide = activeSlide.prev();
+					if (s.isEnd || (nextSlide.length && !nextSlide.hasClass('swiper-slide-visible'))) {
+						s.thumbs.swiper.slideNext();
+						return;
+					}
+					if (s.isBeginning || (prevSlide.length && !prevSlide.hasClass('swiper-slide-visible'))) {
+						s.thumbs.swiper.slidePrev();
+					}
+				},
+			},
+		});
+	});
+}
