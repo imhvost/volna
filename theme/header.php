@@ -106,7 +106,7 @@ $volna_header_btn     = carbon_get_theme_option( 'volna_header_btn' );
 								<?php endif; ?>
 								<?php get_template_part( 'template-parts/messengers', '', array( 'messengers' => $volna_messengers ) ); ?>
 								<?php if ( $volna_header_btn ) : ?>
-									<button class="volna-header-btn volna-btn volna-btn-small" data-modal-open="modal-application">
+									<button class="volna-header-btn volna-btn volna-btn-small" data-modal-open="volna-modal-application">
 										<?php echo esc_html( $volna_header_btn ); ?>
 									</button>
 								<?php endif; ?>

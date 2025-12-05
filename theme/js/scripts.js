@@ -300,8 +300,11 @@ $(document).on('submit', '.volna-contact-form', function (e) {
 		success: function (answer) {
 			// console.log(answer);
 			if (answer?.success) {
-				volnaModal.openModal('volna-modal-sent');
-				t.find('input.volna-input').val('');
+				volnaModal.closeAllModals();
+				setTimeout(() => {
+					volnaModal.openModal('volna-modal-sent');
+					t.find('input.volna-input').val('');
+				}, 400);
 			}
 			t.removeClass('volna-ajax-process');
 		},
@@ -339,9 +342,9 @@ function volnaGetProduct(t, postId, postType) {
 				if (url) {
 					window.history.replaceState({}, '', url);
 				}
-				$('#volna-product-modal .volna-modal-content').html(answer);
+				$('#volna-modal-product .volna-modal-content').html(answer);
 				volnaInitProductGallery();
-				volnaModal.openModal('volna-product-modal');
+				volnaModal.openModal('volna-modal-product');
 			}
 			if (t) {
 				t.removeClass('volna-product-loading');

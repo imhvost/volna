@@ -21,8 +21,11 @@ function volna_contact_form() {
 	$fields = volna_check_text_fields(
 		array(
 			'subject',
+			'post_id',
+			'name',
 			'tel',
 			'where',
+			'calculator',
 		),
 		false
 	);
@@ -31,9 +34,16 @@ function volna_contact_form() {
 		? sanitize_textarea_field( wp_unslash( $_POST['text'] ) )
 		: '';
 
+	if ( $fields['calculator'] ) {
+		$fields['calculator'] = str_replace( '|', '<br>', $fields['calculator'] );
+	}
+
 	$titles = array(
-		'tel'   => __( 'Телефон', 'volna' ),
-		'where' => __( 'Куда отправить?', 'volna' ),
+		'name'       => __( 'Имя', 'volna' ),
+		'tel'        => __( 'Телефон', 'volna' ),
+		'where'      => __( 'Куда отправить?', 'volna' ),
+		'text'       => __( 'Сообщение', 'volna' ),
+		'calculator' => __( 'Калькулятор', 'volna' ),
 	);
 
 	global $_FILES;
@@ -68,6 +78,10 @@ function volna_contact_form() {
 		if ( $fields[ $key ] ) {
 			$msg .= '<b>' . esc_html( $item ) . ':</b> ' . esc_html( $fields[ $key ] ) . '<br>';
 		}
+	}
+
+	if ( $fields['post_id'] ) {
+			$msg .= '<b>' . esc_html__( 'Ссылка на пост', 'volna' ) . ': </b> <a href="' . esc_url( get_edit_post_link( $fields['post_id'] ) ) . '">' . esc_html( $fields['post_id'] ) . '</a><br>';
 	}
 
 	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {

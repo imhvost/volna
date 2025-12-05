@@ -109,6 +109,19 @@ add_action(
 					Field::make( 'text', 'volna_header_regime', __( 'Режим', 'volna' ) ),
 					Field::make( 'text', 'volna_header_btn', __( 'Кнопка', 'volna' ) ),
 				)
+			)
+			->add_tab(
+				__( 'Формы', 'volna' ),
+				array(
+					Field::make( 'textarea', 'volna_form_title', __( 'Заголовок', 'volna' ) )
+						->set_rows( 2 ),
+					Field::make( 'textarea', 'volna_form_desc', __( 'Описание', 'volna' ) )
+						->set_rows( 3 ),
+					Field::make( 'textarea', 'volna_sent_title', __( 'Отправлено - заголовок', 'volna' ) )
+						->set_rows( 2 ),
+					Field::make( 'textarea', 'volna_sent_desc', __( 'Отправлено - описание', 'volna' ) )
+						->set_rows( 3 ),
+				)
 			);
 
 		/* volna-land */

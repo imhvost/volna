@@ -100,7 +100,7 @@ if ( $target_post_id ) :
 				</div>
 			</div>
 		<?php endif; ?>
-		<button class="volna-btn" data-modal-open="modal-application" data-post-id="<?php esc_attr( $target_post_id ); ?>">
+		<button class="volna-btn" data-modal-open="volna-modal-application" data-post_id="<?php echo esc_attr( $target_post_id ); ?>">
 			<?php esc_html_e( 'Узнать детали', 'volna' ); ?>
 		</button>
 	</div>
