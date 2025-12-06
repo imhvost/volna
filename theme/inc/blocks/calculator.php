@@ -67,7 +67,7 @@ add_action(
 						return;
 					}
 					if ( $fields['volna_section_title'] || $fields['quiz'] ) :
-						$block_id = wp_unique_id();
+						$block_id = uniqid();
 						?>
 						<div
 							<?php echo $fields['volna_section_id'] ? 'id="' . esc_attr( $fields['volna_section_id'] ) . '"' : ''; ?>
@@ -130,9 +130,9 @@ add_action(
 																			<input
 																				type="<?php echo esc_attr( $item['type'] ); ?>"
 																				class="volna-<?php echo esc_attr( $item['type'] ); ?>-input"
-																				required
-																				name="calculator-option-<?php echo esc_attr( $block_id ); ?>-<?php echo esc_attr( $key ); ?>"
-																				value="<?php echo esc_attr( $option ); ?>"
+																				name="_calculator-<?php echo esc_attr( $block_id ); ?>-<?php echo esc_attr( $key ); ?>"
+																				data-title="<?php echo esc_html( trim( $item['title'] ) ); ?>"
+																				value="<?php echo esc_attr( trim( $option ) ); ?>"
 																			>
 																			<i class="volna-<?php echo esc_attr( $item['type'] ); ?>-label-icon">
 																				<?php if ( 'checkbox' === $item['type'] ) : ?>
@@ -159,7 +159,7 @@ add_action(
 												<button type="button" class="volna-calculator-form-btn-prev" aria-label="<?php esc_attr_e( 'Назад', 'volna' ); ?>">
 													<svg class="volna-icon"><use xlink:href="#icon-chevron-left"/></svg>
 												</button>
-												<button type="submit" class="volna-btn volna-calculator-form-btn-next" data-title="<?php esc_attr_e( 'Далее', 'volna' ); ?>" data-submit="<?php esc_attr_e( 'Получить предложения', 'volna' ); ?>">
+												<button type="button" class="volna-btn volna-btn-small volna-calculator-form-btn-next" data-title="<?php esc_attr_e( 'Далее', 'volna' ); ?>" data-submit="<?php esc_attr_e( 'Получить предложения', 'volna' ); ?>">
 													<?php esc_html_e( 'Далее', 'volna' ); ?>
 												</button>
 											</div>

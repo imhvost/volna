@@ -462,18 +462,35 @@
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
+	overflow: hidden;
+	will-change: transform;
+	@media @md {
+		gap: 24px;
+		border-radius: 24px;
+		padding: 24px var(--volna-container-padding);
+	}
+}
+
+.volna-calculator-form-slider {
+	overflow: visible;
 }
 
 .volna-calculator-form-slide {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
+	@media @md {
+		gap: 24px;
+	}
 }
 
 .volna-calculator-form-slide-head {
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
+	@media @md {
+		gap: 8px;
+	}
 }
 
 .volna-calculator-form-slide-inputs {
@@ -484,6 +501,57 @@
 
 .volna-calculator-form-slide-options {
 	display: grid;
-	gap: 20px;
-	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	@media @sm_ {
+		gap: 20px;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.volna-calculator-form-nav {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	justify-content: space-between;
+	@media @md {
+		gap: 8px;
+	}
+}
+
+.volna-calculator-form-pagination {
+	font-size: 14px;
+}
+
+.volna-calculator-form-btns {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex: none;
+	@media @md {
+		gap: 8px;
+	}
+}
+
+.volna-calculator-form-btn-prev {
+	width: 38px;
+	aspect-ratio: 1;
+	flex: none;
+	border: solid 1px @link;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	color: @link;
+	transition:
+		color 0.4s,
+		background-color 0.4s,
+		opacity 0.4s,
+		visibility 0.4s;
+	&:not(.volna-active) {
+		opacity: 0;
+		visibility: hidden;
+	}
+	&:hover {
+		color: @white;
+		background-color: @link;
+	}
 }

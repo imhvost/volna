@@ -291,6 +291,22 @@ $(document).on('submit', '.volna-contact-form', function (e) {
 	formData.append('action', 'volna_contact_form');
 	formData.append('nonce', wp_ajax.nonce);
 
+	if (t.hasClass('volna-calculator-form')) {
+		const calculator = {};
+
+		t.find('[name^="_calculator"]:checked').each(function () {
+			const input = $(this);
+			const key = input.data('title');
+			if (!calculator[key]) {
+				calculator[key] = [];
+			}
+			calculator[key].push(input.val());
+		});
+		if (Object.keys(calculator).length) {
+			formData.append('calculator', JSON.stringify(calculator));
+		}
+	}
+
 	$.ajax({
 		url: wp_ajax.url,
 		type: 'POST',
@@ -421,3 +437,53 @@ function volnaInitProductGallery() {
 		});
 	});
 }
+
+/* calculator */
+
+$('.volna-calculator-form-slider').each(function () {
+	const form = $(this).closest('.volna-calculator-form');
+	const pagination = form.find('.volna-calculator-form-pagination');
+	const prevBtn = form.find('.volna-calculator-form-btn-prev');
+	const submitBtn = form.find('.volna-calculator-form-btn-next');
+	new Swiper(this, {
+		speed: 400,
+		threshold: 8,
+		spaceBetween: 40,
+		autoHeight: true,
+		pagination: {
+			el: pagination[0],
+			type: 'fraction',
+			renderFraction: (currentClass, totalClass) =>
+				`${pagination.data('title')} <span class="${currentClass}"></span> ${pagination.data('divider')} <span class="${totalClass}"></span>`,
+		},
+		navigation: {
+			prevEl: prevBtn[0],
+		},
+		on: {
+			slideChange: s => {
+				if (s.isEnd) {
+					submitBtn.text(submitBtn.data('submit'));
+				} else {
+					submitBtn.text(submitBtn.data('title'));
+					submitBtn.attr('type', 'button');
+				}
+				if (s.isBeginning) {
+					prevBtn.removeClass('volna-active');
+				} else {
+					prevBtn.addClass('volna-active');
+				}
+			},
+		},
+	});
+});
+
+$(document).on('click', '.volna-calculator-form-btn-next', function (e) {
+	const form = $(this).closest('.volna-calculator-form');
+	const swiper = form.find('.volna-calculator-form-slider')[0]?.swiper;
+	const submitBtn = form.find('.volna-calculator-form-btn-next');
+	if (swiper.isEnd) {
+		submitBtn.attr('type', 'submit');
+	} else {
+		swiper.slideNext();
+	}
+});

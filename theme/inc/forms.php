@@ -35,7 +35,23 @@ function volna_contact_form() {
 		: '';
 
 	if ( $fields['calculator'] ) {
-		$fields['calculator'] = str_replace( '|', '<br>', $fields['calculator'] );
+		$calculator = json_decode( $fields['calculator'], true );
+
+		if ( empty( $calculator ) || ! is_array( $calculator ) ) {
+			$calculator = '';
+		}
+
+		$output = array();
+
+		foreach ( $calculator as $key => $values ) {
+			if ( is_array( $values ) ) {
+				$output[] = $key . ': ' . implode( ', ', $values );
+			} else {
+				$output[] = $key . ': ' . $values;
+			}
+		}
+
+		$fields['calculator'] = implode( '<br>', $output );
 	}
 
 	$titles = array(
@@ -76,7 +92,7 @@ function volna_contact_form() {
 	$msg .= '<b>' . esc_html__( 'Дата', 'volna' ) . ':</b> ' . wp_date( 'Y-m-d H:i:s' ) . '<br>';
 	foreach ( $titles as $key => $item ) {
 		if ( $fields[ $key ] ) {
-			$msg .= '<b>' . esc_html( $item ) . ':</b> ' . esc_html( $fields[ $key ] ) . '<br>';
+			$msg .= '<b>' . esc_html( $item ) . ':</b> ' . wp_kses_post( $fields[ $key ] ) . '<br>';
 		}
 	}
 
