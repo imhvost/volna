@@ -152,5 +152,38 @@ add_action(
 
 				)
 			);
+
+		/* volna-project */
+		Container::make( 'post_meta', __( 'Поля', 'volna' ) )
+			->where( 'post_type', '=', 'volna-project' )
+			->add_fields(
+				array(
+					Field::make( 'text', 'volna_area', __( 'Площадь', 'volna' ) )
+						->set_attribute( 'type', 'number' ),
+					Field::make( 'text', 'volna_price', __( 'Цена', 'volna' ) )
+						->set_attribute( 'type', 'number' ),
+					Field::make( 'text', 'volna_price_area', __( 'Цена за м²', 'volna' ) )
+						->set_attribute( 'type', 'number' ),
+					Field::make( 'text', 'volna_bedrooms', __( 'Спальни', 'volna' ) )
+						->set_attribute( 'type', 'number' )
+						->set_width( 50 ),
+					Field::make( 'text', 'volna_bathrooms', __( 'Санузлы', 'volna' ) )
+						->set_attribute( 'type', 'number' )
+						->set_width( 50 ),
+					Field::make( 'media_gallery', 'volna_gallery', __( 'Галерея', 'volna' ) )
+						->set_type( array( 'image' ) ),
+					Field::make( 'complex', 'volna_characteristics', __( 'Характеристики', 'volna' ) )
+						->set_collapsed( true )
+						->set_layout( 'tabbed-vertical' )
+						->add_fields(
+							array(
+								Field::make( 'text', 'title', __( 'Заголовок', 'volna' ) ),
+								Field::make( 'text', 'desc', __( 'Описание', 'volna' ) ),
+							)
+						)
+						->set_header_template( '<%= title %>' ),
+
+				)
+			);
 	}
 );

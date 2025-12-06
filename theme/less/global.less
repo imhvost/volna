@@ -90,7 +90,7 @@
 	}
 }
 
-.volna-h4 {
+.volna-h5 {
 	font-size: 22px;
 	font-weight: 700;
 	line-height: 1.2;
@@ -491,12 +491,9 @@
 
 .volna-slider-nav {
 	display: flex;
-	margin-top: 32px;
 	align-items: center;
-	gap: 10px;
-	@media @md {
-		margin-top: 24px;
-	}
+	gap: 14px;
+	justify-content: center;
 	&:has(.volna-slider-arrow-prev.swiper-button-disabled):has(.volna-slider-arrow-next.swiper-button-disabled) {
 		display: none;
 	}
@@ -504,8 +501,44 @@
 
 .volna-slider-arrow {
 	padding: 0;
-	width: 44px;
-	height: 44px;
+	width: 38px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	border: solid 1px @link;
+	color: @link;
+	display: grid;
+	place-items: center;
+	flex: none;
+	transition:
+		color 0.4s,
+		background-color 0.4s;
+	&:hover {
+		background-color: @link;
+		color: @white;
+	}
+}
+
+.volna-slider-pagination {
+	width: auto !important;
+	transform: none !important;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	span {
+		margin: 0 !important;
+		width: 8px;
+		height: 8px;
+		opacity: 1;
+		cursor: pointer;
+		background: @border;
+		transition: background-color 0.4s !important;
+		&:hover {
+			border-color: @link;
+		}
+		&.swiper-pagination-bullet-active {
+			background-color: @link;
+		}
+	}
 }
 
 .volna-accordion {
@@ -576,6 +609,11 @@
 	text-align: center;
 	span {
 		color: @link;
+	}
+	@media @xs {
+		br {
+			display: none;
+		}
 	}
 }
 
@@ -775,7 +813,7 @@
 	}
 }
 
-.volna-land-item {
+.volna-product-item {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -784,31 +822,37 @@
 	transition: color 0.4s;
 	&:hover {
 		color: @link;
-		.volna-land-item-img {
+		.volna-product-item-img {
 			&:after {
 				opacity: 1;
 			}
-			svg {
+			& > svg {
 				transform: scale(1);
 				opacity: 1;
 			}
 		}
 	}
 	&.volna-product-loading {
-		.volna-land-item-img {
-			svg {
+		.volna-product-item-img {
+			& > svg {
 				opacity: 0;
 				transform: scale(0.8);
 			}
 			.volna-loading {
 				opacity: 1;
-				transform: scale(1);
 			}
 		}
 	}
 }
 
-.volna-land-item-img {
+.volna-project-item {
+	.volna-product-item-area {
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+
+.volna-product-item-img {
 	border-radius: 32px;
 	aspect-ratio: 412/280;
 	background-color: @title;
@@ -825,7 +869,7 @@
 	&:has(img) {
 		background: none;
 	}
-	svg {
+	& > svg {
 		--size: 68px;
 		color: @white;
 		position: absolute;
@@ -845,14 +889,12 @@
 		left: calc(50% - 0.5 * var(--size));
 		top: calc(50% - 0.5 * var(--size));
 		opacity: 0;
-		transition:
-			opacity 0.4s,
-			transform 0.4s;
-		transform: scale(0.8);
+		transition: opacity 0.4s;
+		z-index: 1;
 	}
 }
 
-.volna-land-item-category {
+.volna-product-item-category {
 	position: absolute;
 	top: 32px;
 	right: 0;
@@ -860,14 +902,40 @@
 	z-index: 1;
 	border-radius: 12px 0 0 12px;
 	padding: 10px;
-	background-color: @white;
+	background-color: fade(@white, 80%);
 	color: @link;
 	font-size: 16px;
 	line-height: 1.2;
 	font-weight: 700;
+	backdrop-filter: blur(4px);
 }
 
-.volna-land-item-head {
+.volna-product-item-rooms {
+	position: absolute;
+	z-index: 1;
+	inset: 28px 8px;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.volna-product-item-room {
+	display: flex;
+	gap: 6px;
+	padding: 6px;
+	border-radius: 10px;
+	background-color: fade(@white, 80%);
+	color: @link;
+	display: flex;
+	align-items: center;
+	backdrop-filter: blur(4px);
+	svg {
+		--size: 16px;
+	}
+}
+
+.volna-product-item-head {
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -875,31 +943,31 @@
 	white-space: nowrap;
 }
 
-.volna-land-item-area {
+.volna-product-item-area {
 	font-size: 22px;
 	line-height: 1.2;
 	font-weight: 700;
 }
 
-.volna-land-item-prices {
+.volna-product-item-prices {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 }
 
-.volna-land-item-price-old {
+.volna-product-item-price-old {
 	font-weight: 500;
 	text-decoration: line-through;
 }
 
-.volna-land-item-price {
+.volna-product-item-price {
 	color: @link;
 	font-size: 22px;
 	font-weight: 700;
 	line-height: 1.2;
 }
 
-.volna-land-item-excerpt {
+.volna-product-item-excerpt {
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 1.2;

@@ -69,6 +69,7 @@ $('.volna-modal').on('accessible-minimodal:after-close', e => {
 
 	const url = new URL(window.location.href);
 	url.searchParams.delete('land');
+	url.searchParams.delete('project');
 	window.history.replaceState({}, '', url.toString());
 });
 
@@ -165,6 +166,41 @@ $('.volna-hero-slider').each(function () {
 				wrapp.css('--autoplay-progress', 1 - progress);
 			},
 		},
+	});
+});
+
+function volnaGetSliderNav(wrapp, navArr = []) {
+	const nav = {};
+	if (navArr.includes('navigation')) {
+		nav.navigation = {
+			nextEl: wrapp.find('.volna-slider-arrow-next')[0],
+			prevEl: wrapp.find('.volna-slider-arrow-prev')[0],
+		};
+	}
+	if (navArr.includes('pagination')) {
+		nav.pagination = {
+			el: wrapp.find('.volna-slider-pagination')[0],
+			type: 'bullets',
+			clickable: true,
+		};
+	}
+	if (navArr.includes('scrollbar')) {
+		nav.scrollbar = {
+			el: wrapp.find('.volna-slider-scrollbar')[0],
+			draggable: true,
+		};
+	}
+	return nav;
+}
+
+$('.volna-neighbours-slider').each(function () {
+	const wrapp = $(this).closest('.volna-slider-wrapp');
+	new Swiper(this, {
+		speed: 400,
+		threshold: 8,
+		spaceBetween: 20,
+		slidesPerView: 'auto',
+		...volnaGetSliderNav(wrapp, ['navigation', 'pagination']),
 	});
 });
 
@@ -392,6 +428,9 @@ $(document).ready(function () {
 	if (params.get('land')) {
 		volnaGetProduct(null, params.get('land'), 'volna-land');
 	}
+	if (params.get('project')) {
+		volnaGetProduct(null, params.get('project'), 'volna-project');
+	}
 });
 
 /* volna-product-gallery */
@@ -450,6 +489,10 @@ $('.volna-calculator-form-slider').each(function () {
 		threshold: 8,
 		spaceBetween: 40,
 		autoHeight: true,
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true,
+		},
 		pagination: {
 			el: pagination[0],
 			type: 'fraction',

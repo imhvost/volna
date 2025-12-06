@@ -1,6 +1,6 @@
 <?php
 /**
- * Block lands
+ * Block projects
  *
  * @package volna
  */
@@ -15,8 +15,8 @@ use Carbon_Fields\Field;
 add_action(
 	'carbon_fields_register_fields',
 	function () {
-		$block_name  = 'lands';
-		$block_title = __( 'Участки', 'volna' );
+		$block_name  = 'projects';
+		$block_title = __( 'Проекты', 'volna' );
 		Block::make( 'volna-' . $block_name, $block_title )
 			->add_fields(
 				array_merge(
@@ -26,12 +26,12 @@ add_action(
 							->set_html( '<img src="' . get_template_directory_uri() . '/img/blocks/' . $block_name . '.webp" alt="">' ),
 						Field::make( 'textarea', 'desc', __( 'Описание', 'volna' ) )
 							->set_rows( 3 ),
-						Field::make( 'association', 'lands', __( 'Участки', 'volna' ) )
+						Field::make( 'association', 'projects', __( 'Проекты', 'volna' ) )
 							->set_types(
 								array(
 									array(
 										'type'      => 'post',
-										'post_type' => 'volna-land',
+										'post_type' => 'volna-project',
 									),
 								)
 							)
@@ -49,9 +49,9 @@ add_action(
 						return;
 					}
 
-					$lands = volna_get_association_ids( $fields['lands'] );
+					$projects = volna_get_association_ids( $fields['projects'] );
 
-					if ( $fields['volna_section_title'] || $fields['desc'] || $lands ) :
+					if ( $fields['volna_section_title'] || $fields['desc'] || $projects ) :
 						?>
 						<div
 							<?php echo $fields['volna_section_id'] ? 'id="' . esc_attr( $fields['volna_section_id'] ) . '"' : ''; ?>
@@ -69,23 +69,23 @@ add_action(
 										<?php endif; ?>
 									</div>
 								<?php endif; ?>
-								<?php if ( $lands ) : ?>
+								<?php if ( $projects ) : ?>
 									<div class="volna-products-list">
 										<?php
-										foreach ( $lands as $target_post_id ) {
+										foreach ( $projects as $target_post_id ) {
 											if ( 'publish' !== get_post_status( $target_post_id ) ) {
 												continue;
 											}
-											get_template_part( 'template-parts/land', 'item', array( 'target_post_id' => $target_post_id ) );
+											get_template_part( 'template-parts/project', 'item', array( 'target_post_id' => $target_post_id ) );
 										}
 										?>
 									</div>
 									<?php
-										$lans_page_id = volna_get_page_id_by_template( 'page-lands.php' );
-									if ( $lans_page_id ) :
+										$projects_page_id = volna_get_page_id_by_template( 'page-projects.php' );
+									if ( $projects_page_id ) :
 										?>
 										<div class="volna-read-more-btn">
-											<a href="<?php echo esc_url( get_the_permalink( $lans_page_id ) ); ?>" class="volna-btn">
+											<a href="<?php echo esc_url( get_the_permalink( $projects_page_id ) ); ?>" class="volna-btn">
 												<?php esc_html_e( 'Показать ещё', 'volna' ); ?>
 											</a>
 										</div>

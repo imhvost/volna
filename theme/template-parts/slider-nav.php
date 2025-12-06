@@ -11,10 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div class="volna-slider-nav">
-	<button class="volna-slider-arrow volna-slider-arrow-prev volna-btn" aria-label="<?php esc_attr_e( 'Prev', 'volna' ); ?>">
-		<svg class="volna-icon"><use xlink:href="#icon-arrow-left"/></svg>
+	<button class="volna-slider-arrow volna-slider-arrow-prev" aria-label="<?php esc_attr_e( 'Назад', 'volna' ); ?>">
+		<svg class="volna-icon"><use xlink:href="#icon-chevron-left"/></svg>
 	</button>
-	<button class="volna-slider-arrow volna-slider-arrow-next volna-btn" aria-label="<?php esc_attr_e( 'Next', 'volna' ); ?>">
-		<svg class="volna-icon"><use xlink:href="#icon-arrow-right"/></svg>
+	<div class="volna-slider-pagination"></div>
+	<button class="volna-slider-arrow volna-slider-arrow-next" aria-label="<?php esc_attr_e( 'Вперед', 'volna' ); ?>">
+		<svg class="volna-icon"><use xlink:href="#icon-chevron-right"/></svg>
 	</button>
 </div>

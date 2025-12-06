@@ -85,7 +85,7 @@ add_action(
 														<?php if ( $item['title'] || $item['desc'] ) : ?>
 															<div class="volna-calculator-form-slide-head">
 																<?php if ( $item['title'] ) : ?>
-																	<div class="volna-calculator-form-slide-title volna-h4">
+																	<div class="volna-calculator-form-slide-title volna-h5">
 																		<?php echo esc_html( $item['title'] ); ?>
 																	</div>
 																<?php endif; ?>

@@ -81,7 +81,7 @@ add_action(
 				'menu_icon'          => 'dashicons-store',
 				'menu_position'      => 5,
 				'publicly_queryable' => false,
-				'supports'           => array( 'title', 'thumbnail', 'editor', 'excerpt' ),
+				'supports'           => array( 'title', 'thumbnail', 'editor' ),
 				'show_in_rest'       => false,
 			)
 		);

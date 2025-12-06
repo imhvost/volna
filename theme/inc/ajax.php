@@ -31,7 +31,14 @@ function volna_get_product() {
 	}
 
 	ob_start();
-	get_template_part( 'template-parts/land', '', array( 'target_post_id' => $fields['target_post_id'] ) );
+	get_template_part(
+		'template-parts/product',
+		'',
+		array(
+			'target_post_id'   => $fields['target_post_id'],
+			'target_post_type' => $fields['target_post_type'],
+		)
+	);
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo ob_get_clean();
 

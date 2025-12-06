@@ -116,7 +116,7 @@ add_action(
 												<?php if ( $item['title'] || $item['desc'] || $item['btn_text'] ) : ?>
 													<div class="volna-about-card-body">
 														<?php if ( $item['title'] ) : ?>
-															<div class="volna-about-card-title volna-h4">
+															<div class="volna-about-card-title volna-h5">
 																<?php echo wp_kses_post( nl2br( $item['title'] ) ); ?>
 															</div>
 														<?php endif; ?>

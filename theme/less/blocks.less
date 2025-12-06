@@ -314,10 +314,6 @@
 	}
 }
 
-.volna-about-card-desc {
-	line-height: 1.2;
-}
-
 .volna-presentation-main {
 	--padding: 40px;
 	display: flex;
@@ -553,5 +549,125 @@
 	&:hover {
 		color: @white;
 		background-color: @link;
+	}
+}
+
+.volna-advantages-cards {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: 1fr 1fr 1fr;
+	@media @md {
+		gap: 16px;
+		grid-template-columns: 1fr 1fr;
+	}
+	@media @sm {
+		grid-template-columns: 1fr;
+	}
+}
+
+.volna-advantages-card {
+	border-radius: 32px;
+	overflow: hidden;
+	will-change: transform;
+	position: relative;
+	background-color: @title;
+	color: @white;
+	min-height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 20px;
+	@media @md {
+		padding: 16px;
+		border-radius: 24px;
+	}
+	&:has(.volna-advantages-card-img) {
+		background: none;
+	}
+}
+
+.volna-advantages-card-img {
+	position: absolute;
+	inset: 0;
+	&:before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 36.18%, rgba(0, 0, 0, 0.8) 100%);
+	}
+}
+
+.volna-advantages-card-body {
+	position: relative;
+	z-index: 1;
+	gap: 12px;
+	display: flex;
+	flex-direction: column;
+}
+
+.volna-advantages-card-desc {
+	--volna-content-gap: 10px;
+	font-size: 14px;
+}
+
+.volna-neighbours {
+	overflow: hidden;
+}
+
+.volna-neighbours-slider {
+	overflow: visible;
+}
+
+.volna-neighbours-slide {
+	width: 360px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	@media @sm {
+		width: 320px;
+	}
+}
+
+.volna-neighbours-slide-img {
+	border-radius: 32px;
+	aspect-ratio: 360/335;
+	@media @md {
+		border-radius: 24px;
+	}
+}
+
+.volna-neighbours-slide-head {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.volna-neighbours-slide-position {
+	color: @link;
+	font-weight: 700;
+}
+
+.volna-neighbours-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.volna-neighbours-card-checklist {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	@media @xs {
+		font-size: 14px;
+	}
+	li {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		svg {
+			--size: 16px;
+			color: @link;
+		}
 	}
 }

@@ -9,7 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$target_post_id = $args['target_post_id'] ?? null;
+$target_post_id   = $args['target_post_id'] ?? null;
+$target_post_type = $args['target_post_type'] ?? null;
 
 if ( $target_post_id ) :
 	$volna_price           = carbon_get_post_meta( $target_post_id, 'volna_price' );
@@ -17,6 +18,9 @@ if ( $target_post_id ) :
 	$volna_gallery         = carbon_get_post_meta( $target_post_id, 'volna_gallery' );
 	$volna_characteristics = carbon_get_post_meta( $target_post_id, 'volna_characteristics' );
 	$target_content        = get_the_content( null, false, $target_post_id );
+	if ( ! $target_post_type ) {
+		$target_post_type = get_post_type( $target_post_id );
+	}
 	?>
 <div class="volna-product">
 	<div class="volna-product-head">
@@ -26,7 +30,7 @@ if ( $target_post_id ) :
 		<?php if ( $volna_price || $volna_price_area ) : ?>
 			<div class="volna-product-prices">
 				<?php if ( $volna_price ) : ?>
-					<div class="volna-product-price volna-h4">
+					<div class="volna-product-price volna-h5">
 						<?php esc_html_e( 'от', 'volna' ); ?>
 						<span>
 							<?php echo esc_html( number_format( $volna_price, 0, '', ' ' ) ); ?> ₽
@@ -39,7 +43,7 @@ if ( $target_post_id ) :
 						<span>
 							<?php echo esc_html( number_format( $volna_price_area, 0, '', ' ' ) ); ?> ₽
 						</span>
-						<?php esc_html_e( 'за м²', 'volna' ); ?>
+						<?php echo 'volna-land' === $target_post_type ? esc_html__( 'за сотку', 'volna' ) : esc_html__( 'за м²', 'volna' ); ?>
 					</div>
 				<?php endif; ?>
 			</div>

@@ -439,34 +439,45 @@ function volna_get_building_and_floor( $post_id, $get_first = false ) {
 }
 
 /**
- * Plural
+ * Plural.
  *
- * Returns the correct plural form based on the given number.
- * Supports different rules for English and Slavic languages.
+ * Returns the correct plural form based on the given number
+ * for English, Ukrainian and Russian languages.
  *
  * @param int   $number Number to determine plural form.
- * @param array $forms  Array of already translated plural forms.
+ * @param array $forms  Array of plural forms:
+ *                      - English: array( singular, plural )
+ *                      - Russian: array( singular, few, many ).
  *
  * @return string Correct plural form.
  */
 function volna_plural( $number, $forms ) {
-	$locale = determine_locale(); // Gets the current WordPress locale
+	$locale = determine_locale();
+	$lang   = substr( $locale, 0, 2 );
 
-	switch ( substr( $locale, 0, 2 ) ) {
-		case 'uk':
-			$mod10  = $number % 10;
-			$mod100 = $number % 100;
+	$mod10  = $number % 10;
+	$mod100 = $number % 100;
+
+	switch ( $lang ) {
+		case 'ru':
+			if ( count( $forms ) !== 3 ) {
+				return $forms[0] ?? '';
+			}
 
 			if ( 1 === $mod10 && 11 !== $mod100 ) {
-				return $forms[0]; // singular
-			} elseif ( $mod10 >= 2 && $mod10 <= 4 && ( $mod100 < 10 || $mod100 >= 20 ) ) {
-				return $forms[1]; // few
-			} else {
-				return $forms[2]; // many
+				return $forms[0];
+			} elseif ( $mod10 >= 2 && $mod10 <= 4 && ( $mod100 < 12 || $mod100 > 14 ) ) {
+				return $forms[1];
 			}
+
+			return $forms[2];
 
 		case 'en':
 		default:
+			if ( count( $forms ) < 2 ) {
+				return $forms[0] ?? '';
+			}
+
 			return ( 1 === $number ) ? $forms[0] : $forms[1];
 	}
 }

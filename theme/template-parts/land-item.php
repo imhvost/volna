@@ -25,18 +25,18 @@ if ( $target_post_id ) :
 	?>
 <a
 	href="<?php echo esc_url( get_the_permalink() ); ?>?land=<?php echo esc_attr( $target_post_id ); ?>"
-	class="volna-land-item volna-product-item"
+	class="volna-product-item volna-land-item"
 	data-target-post-id="<?php echo esc_attr( $target_post_id ); ?>"
 	data-target-post-type="volna-land"
 >
-	<div class="volna-land-item-img volna-cover-img">
+	<div class="volna-product-item-img volna-cover-img">
 		<?php
 		if ( has_post_thumbnail( $target_post_id ) ) {
 			echo get_the_post_thumbnail( $target_post_id, 'medium' );
 		}
 		?>
 		<?php if ( $category ) : ?>
-			<div class="volna-land-item-category">
+			<div class="volna-product-item-category">
 				<?php echo esc_html( $category->name ); ?>
 			</div>
 		<?php endif; ?>
@@ -44,16 +44,16 @@ if ( $target_post_id ) :
 		<div class="volna-loading"></div>
 	</div>
 	<?php if ( $volna_area || $volna_price || $volna_price_old ) : ?>
-		<div class="volna-land-item-head">
-			<div class="volna-land-item-area">
+		<div class="volna-product-item-head">
+			<div class="volna-product-item-area">
 				<?php echo esc_html( $volna_area ); ?>
 				<?php
 					echo esc_html(
 						volna_plural(
 							(float) $volna_area,
 							array(
-								__( 'соток', 'volna' ),
-								__( 'соток', 'volna' ),
+								__( 'сотка', 'volna' ),
+								__( 'сотки', 'volna' ),
 								__( 'соток', 'volna' ),
 							)
 						)
@@ -61,14 +61,14 @@ if ( $target_post_id ) :
 				?>
 			</div>
 			<?php if ( $volna_price || $volna_price_old ) : ?>
-				<div class="volna-land-item-prices">
+				<div class="volna-product-item-prices">
 					<?php if ( $volna_price_old ) : ?>
-						<div class="volna-land-item-price-old">
+						<div class="volna-product-item-price-old">
 							<?php echo esc_html( number_format( $volna_price_old, 0, '', ' ' ) ); ?> ₽
 						</div>
 					<?php endif; ?>
 					<?php if ( $volna_price ) : ?>
-						<div class="volna-land-item-price">
+						<div class="volna-product-item-price">
 							<?php echo esc_html( number_format( $volna_price, 0, '', ' ' ) ); ?> ₽
 						</div>
 					<?php endif; ?>
@@ -77,7 +77,7 @@ if ( $target_post_id ) :
 		</div>
 	<?php endif; ?>
 	<?php if ( $excerpt ) : ?>
-		<div class="volna-land-item-excerpt">
+		<div class="volna-product-item-excerpt">
 			<?php echo esc_html( $excerpt ); ?>
 		</div>
 	<?php endif; ?>
