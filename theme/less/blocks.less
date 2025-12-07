@@ -323,6 +323,7 @@
 	border-radius: 32px;
 	background-color: @link;
 	color: @white;
+	gap: 24px;
 	@media @md {
 		--padding: 24px;
 		min-height: unset;
@@ -668,6 +669,313 @@
 		svg {
 			--size: 16px;
 			color: @link;
+		}
+	}
+}
+
+.volna-tour-main {
+	--padding: 40px;
+	display: flex;
+	justify-content: space-between;
+	min-height: 318px;
+	padding: var(--padding);
+	border-radius: 32px;
+	background-color: @link;
+	color: @white;
+	gap: 24px;
+	@media @md {
+		--padding: 24px;
+		min-height: unset;
+		border-radius: 24px;
+		flex-direction: column;
+	}
+}
+
+.volna-tour-body {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	flex: auto;
+	min-width: 0;
+	max-width: 784px;
+	@media @md {
+		gap: 24px;
+		max-width: 100%;
+	}
+	.volna-section-title {
+		color: inherit;
+		text-align: left;
+	}
+}
+
+.volna-tour-head {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	@media @xs {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.volna-messengers {
+		gap: 12px;
+		a {
+			width: 30px;
+		}
+	}
+}
+
+.volna-tour-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.volna-tour-form-inputs {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 1fr 1fr 1fr max-content;
+	@media @md {
+		grid-template-columns: 1fr 1fr;
+	}
+	@media @sm {
+		grid-template-columns: 1fr;
+	}
+}
+
+.volna-tour-img {
+	flex: none;
+	display: flex;
+	width: 346px;
+	align-self: flex-end;
+	margin: 0 calc(-1 * var(--padding)) calc(-1 * var(--padding)) 0;
+	height: 0;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	position: relative;
+	@media @md {
+		height: auto;
+		max-width: calc(100% + var(--padding));
+		margin-left: calc(-1 * var(--padding));
+	}
+}
+
+.volna-tour-img-desc {
+	position: absolute;
+	right: 20px;
+	bottom: 240px;
+	font-size: 12px;
+	max-width: 98px;
+}
+
+.volna-how-buy-banks {
+	--gap: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px var(--gap);
+	flex-wrap: wrap;
+	@media @md {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 32px 24px;
+	}
+}
+
+.volna-how-buy-bank {
+	height: 36px;
+	min-width: 0;
+	&:not(:last-child) {
+		@media @md_ {
+			padding-right: var(--gap);
+			border-right: solid 1px @border;
+		}
+	}
+}
+
+.volna-how-buy-variants {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	@media @md {
+		flex-direction: column;
+		align-items: unset;
+	}
+}
+
+.volna-how-buy-variants-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex: none;
+	width: 324px;
+	@media @md {
+		width: auto;
+		margin: 0 calc(-1 * var(--volna-container-padding));
+		padding: 0 var(--volna-container-padding);
+		overflow-x: auto;
+		.volna-scrollbar-hide;
+		white-space: nowrap;
+		flex-direction: row;
+	}
+}
+
+.volna-how-buy-variants-nav-btn {
+	display: flex;
+	padding: 16px;
+	border: solid 1px @border;
+	border-radius: 18px;
+	font-size: 18px;
+	font-weight: 600;
+	color: @title;
+	background-color: @white;
+	transition:
+		border-color 0.4s,
+		background-color 0.4s,
+		color 0.4s;
+	@media @md_ {
+		width: 100%;
+	}
+	&:hover {
+		color: @link;
+		border-color: @link;
+	}
+	&.volna-active {
+		background-color: @link;
+		color: @white;
+		border-color: @link;
+	}
+}
+
+.volna-how-buy-variants-tabs {
+	--padding: 40px;
+	padding: var(--padding);
+	@media @md {
+		padding: 24px var(--volna-container-padding);
+		border-radius: 24px;
+	}
+	flex: auto;
+	min-width: 0;
+	border-radius: 32px;
+	border: solid 1px @border;
+	overflow: hidden;
+	will-change: transform;
+	background-color: @white;
+}
+
+.volna-how-buy-variants-tab {
+	display: flex;
+	gap: 32px;
+}
+
+.volna-how-buy-variants-tab-body {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	flex: auto;
+	min-width: 0;
+}
+
+.volna-how-buy-variants-tab-info {
+	--gap: 32px;
+	gap: var(--gap);
+	display: flex;
+	padding: 20px 0;
+	@media @sm {
+		flex-direction: column;
+	}
+}
+
+.volna-how-buy-variants-tab-info-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	&:not(:last-child) {
+		@media @sm_ {
+			padding-right: var(--gap);
+			border-right: solid 1px @border;
+		}
+	}
+}
+
+.volna-how-buy-variants-tab-btns {
+	display: flex;
+	gap: 20px;
+	@media @sm {
+		flex-wrap: wrap;
+	}
+	@media @xs {
+		.volna-btn {
+			width: 100%;
+		}
+	}
+}
+
+.volna-how-buy-variants-tab-img {
+	flex: none;
+	width: 180px;
+	margin: calc(-1 * var(--padding));
+	margin-left: 0;
+}
+
+.volna-gallery {
+	overflow: hidden;
+}
+
+.volna-gallery-slider {
+	overflow: visible;
+}
+
+.volna-gallery-slide {
+	width: 546px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	@media @md {
+		width: 320px;
+	}
+}
+
+.volna-gallery-link {
+	border-radius: 32px;
+	aspect-ratio: 546/340;
+	background-color: @title;
+	@media @md {
+		border-radius: 24px;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background-color: fade(@black, 40%);
+		opacity: 0;
+		transition: opacity 0.4s;
+	}
+	&:has(img) {
+		background: none;
+	}
+	& > svg {
+		--size: 68px;
+		color: @white;
+		position: absolute;
+		left: calc(50% - 0.5 * var(--size));
+		top: calc(50% - 0.5 * var(--size));
+		transition:
+			opacity 0.4s,
+			transform 0.4s;
+		opacity: 0;
+		transform: scale(0.8);
+		z-index: 2;
+	}
+	&:hover {
+		&:after {
+			opacity: 1;
+		}
+		& > svg {
+			transform: scale(1);
+			opacity: 1;
 		}
 	}
 }

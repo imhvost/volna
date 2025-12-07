@@ -109,7 +109,7 @@ add_action(
 
 		$css_plugins = array(
 			'swiper-bundle.min.css',
-			// 'glightbox.min.css',
+			'glightbox.min.css',
 		);
 
 		foreach ( $css_plugins as $item ) {
@@ -136,7 +136,7 @@ add_action(
 			$js_plugins = array(
 				'accessible-minimodal.umd.js',
 				'swiper-bundle.min.js',
-				// 'glightbox.min.js',
+				'glightbox.min.js',
 				'focus-visible.min.js',
 				'maska.js',
 			);

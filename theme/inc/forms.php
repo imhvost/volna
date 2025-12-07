@@ -26,6 +26,7 @@ function volna_contact_form() {
 			'tel',
 			'where',
 			'calculator',
+			'tour_format',
 		),
 		false
 	);
@@ -55,11 +56,12 @@ function volna_contact_form() {
 	}
 
 	$titles = array(
-		'name'       => __( 'Имя', 'volna' ),
-		'tel'        => __( 'Телефон', 'volna' ),
-		'where'      => __( 'Куда отправить?', 'volna' ),
-		'text'       => __( 'Сообщение', 'volna' ),
-		'calculator' => __( 'Калькулятор', 'volna' ),
+		'name'        => __( 'Имя', 'volna' ),
+		'tel'         => __( 'Телефон', 'volna' ),
+		'where'       => __( 'Куда отправить?', 'volna' ),
+		'text'        => __( 'Сообщение', 'volna' ),
+		'calculator'  => __( 'Калькулятор', 'volna' ),
+		'tour_format' => __( 'Формат экскурсии', 'volna' ),
 	);
 
 	global $_FILES;

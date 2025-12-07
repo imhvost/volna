@@ -38,8 +38,8 @@
 		text-decoration-thickness: 1px;
 		text-decoration-color: fade(@link, 0%);
 		transition:
-			text-decoration-color 0volna-4s,
-			color 0volna-4s;
+			text-decoration-color 0.4s,
+			color 0.4s;
 	}
 	ol {
 		list-style: none;
@@ -259,7 +259,10 @@
 	}
 }
 
-body .volna-content-text .is-layout-constrained > :where(:not(.volna-alignleft):not(.volna-alignright):not(.volna-alignfull)) {
+body
+	.volna-content-text
+	.is-layout-constrained
+	> :where(:not(.volna-alignleft):not(.volna-alignright):not(.volna-alignfull)) {
 	max-width: 100%;
 }
 

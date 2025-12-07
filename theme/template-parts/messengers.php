@@ -18,6 +18,7 @@ if ( $messengers ) :
 			href="<?php echo esc_url( $item['link'] ); ?>"
 			aria-label="<?php echo esc_attr( $item['title'] ); ?>"
 			target="_blank"
+			class="volna-content-custom-link"
 		>
 			<?php echo wp_get_attachment_image( $item['icon'], 'full' ); ?>
 		</a>

@@ -128,7 +128,7 @@ add_action(
 																			<?php echo wp_kses_post( nl2br( $item['desc'] ) ); ?>
 																		</div>
 																	<?php endif; ?>
-																	<?php if ( $item['btn_text'] ) : ?>
+																	<?php if ( $item['btn_link'] && $item['btn_text'] ) : ?>
 																		<a href="<?php echo esc_attr( volna_get_btn_link( $item['btn_link'] ) ); ?>" class="volna-btn volna-btn-small">
 																			<?php echo esc_html( $item['btn_text'] ); ?>
 																		</a>
