@@ -17,5 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php get_header(); ?>
 <?php the_post(); ?>
+<?php get_template_part( 'template-parts/loop', '', array( 'target_post_type' => 'volna-project' ) ); ?>
 <?php
 get_footer();

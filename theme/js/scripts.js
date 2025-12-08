@@ -215,6 +215,16 @@ $('.volna-gallery-slider').each(function () {
 	});
 });
 
+$('.volna-content-gallery-slider').each(function () {
+	const wrapp = $(this).closest('.volna-slider-wrapp');
+	new Swiper(this, {
+		speed: 400,
+		threshold: 8,
+		spaceBetween: 32,
+		...volnaGetSliderNav(wrapp, ['navigation', 'pagination']),
+	});
+});
+
 /* select */
 
 $(document).on('click', '.volna-select-toggle', function (event) {
@@ -581,3 +591,83 @@ const lacLightbox = GLightbox({
 lacLightbox.on('open', () => $(getFixedElementsSelector()).addClass('gscrollbar-fixer'));
 
 lacLightbox.on('close', () => $(getFixedElementsSelector()).removeClass('gscrollbar-fixer'));
+
+/* toc */
+
+if ($('.volna-single-toc').length) {
+	const titles = [];
+	const toc = $('.volna-single-toc');
+	$('.volna-single-content')
+		.find('h1, h2, h3, h4, h5, h6')
+		.each(function (i) {
+			const t = $(this);
+			if (t.closest('.volna-section').length) {
+				return;
+			}
+			titles.push(`<li><a href="#volna-heading-${i}">${t.text()}</a></li>`);
+			t.attr('id', `volna-heading-${i}`);
+		});
+	if (titles.length == 0) {
+		toc.hide();
+	}
+	toc.html(titles.join(''));
+
+	$(document).on('click', '.volna-single-toc a', function () {
+		const t = $(this);
+		$(t.attr('href'))[0].scrollIntoView({ behavior: 'smooth' });
+		setTimeout(() => {
+			$(t.attr('href'))[0].scrollIntoView({ behavior: 'smooth' });
+		}, 20);
+		return false;
+	});
+
+	function onScroll() {
+		const scrollPaddingTop = parseInt($('html').css('scroll-padding-top')) || 0;
+		const scrollTop = $(window).scrollTop() + scrollPaddingTop + 1;
+
+		$('.volna-single-content').each(function () {
+			let currentId = '';
+			let currentText = '';
+			$(this)
+				.find('h1,h2,h3,h4,h5,h6')
+				.each(function () {
+					var t = $(this);
+					if (t.offset().top <= scrollTop) {
+						currentId = t.attr('id');
+						currentText = t.text();
+					}
+				});
+			if (currentId) {
+				toc.find('li').removeClass('volna-active');
+				toc.find(`[href="#${currentId}"]`).parent().addClass('volna-active');
+			}
+		});
+	}
+
+	$(window).on('scroll resize', onScroll);
+	onScroll();
+}
+
+/* share */
+
+$(document).on('click', '.volna-share-link', function () {
+	const t = $(this);
+	const w = 600;
+	const h = 600;
+	const left = screen.width / 2 - w / 2;
+	const top = screen.height / 2 - h / 2;
+	window.open(
+		t.attr('href'),
+		'sharer',
+		'toolbar=0,status=0,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
+	);
+
+	return false;
+});
+
+$(document).on('click', '.volna-share-copy', function () {
+	const t = $(this);
+	if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(t.data('copy-target')).then(function () {});
+	}
+});

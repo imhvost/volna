@@ -12,7 +12,7 @@
 	h4,
 	h5,
 	h6 {
-		margin: calc(2.5 * var(--volna-content-gap)) 0 var(--volna-content-gap);
+		margin: calc(0.7 * var(--volna-content-gap)) 0 var(--volna-content-gap);
 		&:first-child {
 			margin-top: 0;
 		}
@@ -55,6 +55,10 @@
 			padding-left: 28px;
 			position: relative;
 			display: flow-root;
+			margin-bottom: calc(0.5 * var(--volna-content-gap));
+			&:last-child {
+				margin-bottom: 0;
+			}
 			&:before {
 				content: counter(counter) '.';
 				position: absolute;
@@ -78,12 +82,16 @@
 			position: relative;
 			padding-left: 28px;
 			display: flow-root;
+			margin-bottom: calc(0.5 * var(--volna-content-gap));
+			&:last-child {
+				margin-bottom: 0;
+			}
 			&:before {
 				content: '';
 				position: absolute;
 				width: 4px;
 				height: 4px;
-				left: 12px;
+				left: 10px;
 				top: calc(0.5lh - 2px);
 				background-color: currentColor;
 				border-radius: 50%;
@@ -99,7 +107,8 @@
 		}
 	}
 	figcaption {
-		margin-top: var(--volna-content-gap);
+		margin-top: calc(0.6 * var(--volna-content-gap));
+		font-size: 14px;
 	}
 	.clear {
 		clear: both;
@@ -107,7 +116,7 @@
 }
 
 .wp-block-separator {
-	margin: calc(2 * var(--volna-content-gap)) 0;
+	margin: calc(1.3 * var(--volna-content-gap)) 0;
 	height: 1px;
 	background-color: @border;
 	border: 0;
@@ -123,7 +132,7 @@
 }
 
 .wp-block-image {
-	margin: calc(2.5 * var(--volna-content-gap)) 0;
+	margin: calc(1.3 * var(--volna-content-gap)) 0;
 	img {
 		display: block;
 		border-radius: 30px;
@@ -275,4 +284,14 @@ body .is-layout-flex {
 
 body .is-layout-flow > * + * {
 	margin-block-start: var(--volna-content-gap);
+}
+
+.wp-block-group {
+	padding: 40px;
+	background-color: @bg;
+	border-radius: 32px;
+	@media @md {
+		border-radius: 24px;
+		padding: 24px var(--volna-container-padding);
+	}
 }

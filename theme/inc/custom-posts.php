@@ -29,7 +29,13 @@ add_action(
 					'slug'       => get_page_uri( $page_articles ),
 					'with_front' => false,
 				) : true,
-				'supports'      => array( 'title', 'thumbnail', 'editor' ),
+				'supports'      => array(
+					'title',
+					'thumbnail',
+					'editor',
+					'excerpt
+				',
+				),
 				'show_in_rest'  => true,
 			)
 		);
