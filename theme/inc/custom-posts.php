@@ -33,8 +33,7 @@ add_action(
 					'title',
 					'thumbnail',
 					'editor',
-					'excerpt
-				',
+					'excerpt',
 				),
 				'show_in_rest'  => true,
 			)

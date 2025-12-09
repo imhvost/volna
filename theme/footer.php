@@ -9,12 +9,64 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$volna_form_title = carbon_get_theme_option( 'volna_form_title' );
-$volna_form_desc  = carbon_get_theme_option( 'volna_form_desc' );
-$volna_sent_title = carbon_get_theme_option( 'volna_sent_title' );
-$volna_sent_desc  = carbon_get_theme_option( 'volna_sent_desc' );
+$volna_messengers        = carbon_get_theme_option( 'volna_messengers' );
+$volna_footer_img        = carbon_get_theme_option( 'volna_footer_img' );
+$volna_footer_tels       = carbon_get_theme_option( 'volna_footer_tels' );
+$volna_footer_emails     = carbon_get_theme_option( 'volna_footer_emails' );
+$volna_footer_menu_title = carbon_get_theme_option( 'volna_footer_menu_title' );
+$volna_footer_info_title = carbon_get_theme_option( 'volna_footer_info_title' );
+$volna_footer_info       = carbon_get_theme_option( 'volna_footer_info' );
+$volna_copyright         = carbon_get_theme_option( 'volna_copyright' );
 
 ?>
+<div class="volna-feedback">
+	<a href="#" class="volna-feedback-open swiper swiper-no-swiping">
+		<div class="swiper-wrapper">
+			<?php if ( $volna_messengers ) : ?>
+				<?php foreach ( $volna_messengers as $key => $item ) : ?>
+					<span class="swiper-slide">
+						<?php echo wp_get_attachment_image( $item['icon'], 'full' ); ?>
+					</span>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<?php if ( $volna_footer_tels[0] ?? null ) : ?>
+				<i class="swiper-slide">
+					<svg class="volna-icon"><use xlink:href="#icon-call-calling"/></svg>
+				</i>
+			<?php endif; ?>
+			<?php if ( $volna_footer_emails[0] ?? null ) : ?>
+				<i class="swiper-slide">
+					<svg class="volna-icon"><use xlink:href="#icon-sms-edit"/></svg>
+				</i>
+			<?php endif; ?>
+		</div>
+	</a>
+	<button class="volna-feedback-close">
+		<svg class="volna-icon"><use xlink:href="#icon-close"/></svg>
+	</button>
+	<div class="volna-feedback-links">
+		<?php get_template_part( 'template-parts/messengers', '', array( 'messengers' => $volna_messengers ) ); ?>
+		<?php if ( $volna_footer_tels[0] ?? null ) : ?>
+			<a href="tel:<?php echo esc_attr( preg_replace( '/[^\d+]/', '', $volna_footer_tels[0]['tel'] ) ); ?>" class="volna-feedback-link" aria-label="<?php esc_attr_e( 'Позвонить', 'volna' ); ?>">
+				<svg class="volna-icon"><use xlink:href="#icon-call-calling"/></svg>
+			</a>
+		<?php endif; ?>
+		<?php if ( $volna_footer_emails[0] ?? null ) : ?>
+			<a href="mailto:<?php echo esc_attr( $volna_footer_emails[0]['email'] ); ?>" class="volna-feedback-link" aria-label="<?php esc_attr_e( 'Написать', 'volna' ); ?>">
+				<svg class="volna-icon"><use xlink:href="#icon-sms-edit"/></svg>
+			</a>
+		<?php endif; ?>
+	</div>
+</div>
+<footer class="volna-footer">
+	<div class="volna-container">
+		<div class="volna-footer-body">
+			<?php
+			// get_template_part( 'template-parts/logo' );
+			?>
+		</div>
+	</div>
+</footer>
 <div id="volna-modal-product" class="volna-modal volna-modal-product">
 	<div tabindex="-1" class="volna-modal-wrapp">
 		<div role="dialog" aria-modal="true" class="volna-modal-body">

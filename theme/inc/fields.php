@@ -111,6 +111,37 @@ add_action(
 				)
 			)
 			->add_tab(
+				__( 'Футер', 'volna' ),
+				array(
+					Field::make( 'image', 'volna_footer_img', __( 'Картинка', 'volna' ) ),
+					Field::make( 'complex', 'volna_footer_tels', __( 'Телефоны', 'volna' ) )
+						->set_collapsed( true )
+						->set_layout( 'tabbed-vertical' )
+						->add_fields(
+							array(
+								Field::make( 'text', 'tel', __( 'Телефон', 'volna' ) ),
+							)
+						)
+						->set_header_template( '<%= tel %>' ),
+					Field::make( 'complex', 'volna_footer_emails', __( 'Почты', 'volna' ) )
+						->set_collapsed( true )
+						->set_layout( 'tabbed-vertical' )
+						->add_fields(
+							array(
+								Field::make( 'text', 'email', __( 'Почта', 'volna' ) ),
+							)
+						)
+						->set_header_template( '<%= email %>' ),
+					Field::make( 'text', 'volna_footer_btn', __( 'Кнопка', 'volna' ) ),
+					Field::make( 'text', 'volna_footer_menu_title', __( 'Меню - заголовок', 'volna' ) ),
+					Field::make( 'text', 'volna_footer_info_title', __( 'Информация - заголовок', 'volna' ) ),
+					Field::make( 'rich_text', 'volna_footer_info', __( 'Информация', 'volna' ) ),
+					Field::make( 'text', 'volna_copyright', __( 'Копирайт', 'volna' ) )
+						->set_help_text( __( '{Y} - Поточный год', 'volna' ) ),
+
+				)
+			)
+			->add_tab(
 				__( 'Формы', 'volna' ),
 				array(
 					Field::make( 'textarea', 'volna_form_title', __( 'Заголовок', 'volna' ) )

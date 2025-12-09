@@ -9,8 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$volna_logo           = carbon_get_theme_option( 'volna_logo' );
-$volna_logo_desc      = carbon_get_theme_option( 'volna_logo_desc' );
 $volna_messengers     = carbon_get_theme_option( 'volna_messengers' );
 $volna_header_address = carbon_get_theme_option( 'volna_header_address' );
 $volna_header_tel     = carbon_get_theme_option( 'volna_header_tel' );
@@ -30,18 +28,9 @@ $volna_header_btn     = carbon_get_theme_option( 'volna_header_btn' );
 </head>
 <body <?php body_class(); ?>>
 <?php get_template_part( 'template-parts/sprite' ); ?>
-<header class="volna-header">
+<header class="volna-header" style="display:none;">
 	<div class="volna-container">
-		<?php
-		get_template_part(
-			'template-parts/logo',
-			'',
-			array(
-				'logo' => $volna_logo,
-				'desc' => $volna_logo_desc,
-			)
-		);
-		?>
+		<?php get_template_part( 'template-parts/logo' ); ?>
 		<?php if ( has_nav_menu( 'volna_header' ) || $volna_messengers || $volna_header_address || $volna_header_tel || $volna_header_regime || $volna_header_btn ) : ?>
 			<nav id="volna-header-nav" class="volna-modal volna-header-nav">
 				<div tabindex="-1" class="volna-modal-wrapp">
@@ -70,14 +59,7 @@ $volna_header_btn     = carbon_get_theme_option( 'volna_header_btn' );
 						<?php endif; ?>
 						<div class="volna-head">
 							<?php
-							get_template_part(
-								'template-parts/logo',
-								'',
-								array(
-									'logo' => $volna_logo,
-									'desc' => $volna_logo_desc,
-								)
-							);
+							get_template_part( 'template-parts/logo' );
 							?>
 							<?php if ( $volna_header_address ) : ?>
 									<div class="volna-header-address">

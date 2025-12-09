@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php get_header(); ?>
 <?php the_post(); ?>
-<main class="volna-main-single">
+<main class="volna-page-main">
 	<div class="volna-container">
 		<div class="volna-page-head">
 			<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
@@ -51,7 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $articles = get_posts(
 	array(
 		'post_type'      => 'volna-article',
-		'posts_per_page' => 6,
+		'posts_per_page' => 8,
 		'fields'         => 'ids',
 		'post__not_in'   => array( $post->ID ),
 	)

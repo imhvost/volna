@@ -1150,3 +1150,249 @@
 	width: 100%;
 	margin: 0;
 }
+
+.volna-contacts {
+	.volna-container {
+		flex-direction: row;
+		gap: 40px;
+		@media @md {
+			flex-direction: column;
+			gap: 32px;
+		}
+	}
+}
+
+.volna-contacts-body {
+	flex: none;
+	width: 408px;
+	padding: 40px;
+	background-color: @bg;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	border-radius: 32px;
+	@media @md {
+		border-radius: 24px;
+		padding: 24px var(--volna-container-padding);
+		gap: 24px;
+		width: auto;
+	}
+	.volna-section-title {
+		text-align: left;
+	}
+}
+
+.volna-contacts-offices {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	@media @md {
+		gap: 16px;
+	}
+}
+
+.volna-contacts-office {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.volna-contacts-office-title {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.volna-contacts-office-address {
+	font-size: 14px;
+}
+
+.volna-contacts-block {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	@media @md {
+		gap: 16px;
+	}
+	svg {
+		color: @link;
+	}
+}
+
+.volna-contacts-block-body {
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.volna-contacts-block-title {
+	font-size: 14px;
+	span {
+		color: @link;
+	}
+}
+
+.volna-contacts-block-link {
+	color: inherit;
+	transition: color 0.4s;
+	font-size: 18px;
+	font-weight: 600;
+	&:hover {
+		color: @link;
+	}
+}
+
+.volna-contacts-links {
+	display: flex;
+	flex-direction: column;
+	gap: 26px;
+	@media @md {
+		gap: 24px;
+	}
+}
+
+.volna-contacts-messengers {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.volna-messengers {
+		a {
+			width: 30px;
+		}
+	}
+}
+
+.volna-contacts-details {
+	font-size: 16px;
+}
+
+.volna-contacts-info {
+	gap: 24px;
+	display: flex;
+	flex-direction: column;
+	@media @md_ {
+		position: relative;
+		flex: auto;
+		min-width: 0;
+		border-radius: 32px;
+		border: solid 1px @border;
+		overflow: hidden;
+		will-change: transform;
+		padding: 20px 40px 40px;
+		gap: 10px;
+	}
+}
+
+.volna-contacts-info-nav {
+	border: solid 1px @border;
+	margin: 0 auto;
+	border-radius: 32px;
+	padding: 10px;
+	background-color: @white;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	gap: 40px;
+	@media @md {
+		width: auto;
+		margin: 0 calc(-1 * var(--volna-container-padding));
+		padding: 0 var(--volna-container-padding);
+		overflow-x: auto;
+		.volna-scrollbar-hide;
+		white-space: nowrap;
+		flex-direction: row;
+		border: 0;
+		background: none;
+		border-radius: 0;
+		gap: 8px;
+	}
+}
+
+.volna-contacts-info-nav-btn {
+	border: 0;
+	background: none;
+	display: flex;
+	padding: 10px;
+	border-radius: 32px;
+	gap: 6px;
+	transition:
+		color 0.4s,
+		background-color 0.4s,
+		border-color 0.4s;
+	@media @md {
+		padding: 16px;
+		font-size: 18px;
+		border: solid 1px @border;
+		font-weight: 600;
+		border-radius: 18px;
+	}
+	svg {
+		color: @link;
+		transition: color 0.4s;
+		@media @md_ {
+			--size: 20px;
+		}
+	}
+	&:hover {
+		color: @link;
+		border-color: @link;
+	}
+	&.volna-active {
+		background-color: @link;
+		border-color: @link;
+		color: @white;
+		svg {
+			color: @white;
+		}
+	}
+}
+.volna-contacts-info-map {
+	background-color: @bg;
+	overflow: hidden;
+	will-change: transform;
+	display: flex;
+	@media @md_ {
+		position: absolute;
+		inset: 0;
+	}
+	@media @md {
+		height: 360px;
+		border-radius: 24px;
+	}
+	@media @xs {
+		height: 280px;
+	}
+	iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+}
+
+.volna-contacts-info-routing {
+	display: grid;
+	gap: 10px;
+	@media @sm_ {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.volna-contacts-info-routing-item {
+	min-width: 0;
+	background-color: @bg;
+	padding: 20px;
+	border-radius: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	@media @md {
+		padding: 24px var(--volna-container-padding);
+		border-radius: 24px;
+	}
+}
+
+.volna-contacts-info-routing-item-desc {
+	--volna-content-gap: 16px;
+}
