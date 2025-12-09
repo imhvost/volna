@@ -31,7 +31,7 @@ gulp.src = function (...args) {
 
 const paths = {
 	src: {
-		root: ['theme/*.php', 'theme/screenshot.png', 'theme/style.css', 'theme/theme.json'],
+		root: ['theme/*.php', 'theme/screenshot.png', 'theme/style.css', 'theme/theme.json', 'README.md'],
 		templates: 'theme/template-parts/**/*.*',
 		functions: 'theme/inc/**/*.*',
 		woocommerce: 'theme/woocommerce/**/*.*',
@@ -101,7 +101,7 @@ gulp.task('svgsprite', () =>
 const copyKeys = ['root', 'templates', 'plugins', 'functions', 'woocommerce', 'languages', 'css', 'img', 'fonts'];
 
 copyKeys.forEach(key => {
-	gulp.task(key, () => gulp.src(paths.src[key]).pipe(gulp.dest(paths.dest[key])));
+	gulp.task(key, () => gulp.src(paths.src[key], { allowEmpty: true }).pipe(gulp.dest(paths.dest[key])));
 });
 
 gulp.task('less', () =>
