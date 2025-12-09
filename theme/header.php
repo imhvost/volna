@@ -28,7 +28,7 @@ $volna_header_btn     = carbon_get_theme_option( 'volna_header_btn' );
 </head>
 <body <?php body_class(); ?>>
 <?php get_template_part( 'template-parts/sprite' ); ?>
-<header class="volna-header" style="display:none;">
+<header class="volna-header">
 	<div class="volna-container">
 		<?php get_template_part( 'template-parts/logo' ); ?>
 		<?php if ( has_nav_menu( 'volna_header' ) || $volna_messengers || $volna_header_address || $volna_header_tel || $volna_header_regime || $volna_header_btn ) : ?>
@@ -58,9 +58,7 @@ $volna_header_btn     = carbon_get_theme_option( 'volna_header_btn' );
 							</div>
 						<?php endif; ?>
 						<div class="volna-head">
-							<?php
-							get_template_part( 'template-parts/logo' );
-							?>
+							<?php get_template_part( 'template-parts/logo' ); ?>
 							<?php if ( $volna_header_address ) : ?>
 									<div class="volna-header-address">
 										<svg class="volna-icon volna-visible-tablet"><use xlink:href="#icon-location"/></svg>

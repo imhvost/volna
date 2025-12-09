@@ -1,7 +1,7 @@
 .volna-content-text {
 	display: flow-root;
 	& > *:not(.volna-section) {
-		width: var(--volna-container-max-width);
+		width: var(--volna-container-width);
 		max-width: calc(100% - 2 * var(--volna-container-padding));
 		margin-left: auto;
 		margin-right: auto;
@@ -12,12 +12,14 @@
 	h4,
 	h5,
 	h6 {
-		margin: calc(0.7 * var(--volna-content-gap)) 0 var(--volna-content-gap);
-		&:first-child {
-			margin-top: 0;
-		}
-		&:last-child {
-			margin-bottom: 0;
+		&:not(.volna-section-title) {
+			margin: calc(0.7 * var(--volna-content-gap)) 0 var(--volna-content-gap);
+			&:first-child {
+				margin-top: 0;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 

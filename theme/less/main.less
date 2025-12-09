@@ -551,22 +551,21 @@ ul.page-numbers {
 	transition:
 		opacity 0.4s,
 		visibility 0.4s;
-	span,
-	i {
+	.swiper-slide {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 48px;
 		height: 48px;
 	}
-	span {
+	span.swiper-slide {
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
 		}
 	}
-	i {
+	i.swiper-slide {
 		background-color: @link;
 		color: @white;
 		svg {
@@ -637,4 +636,186 @@ ul.page-numbers {
 	svg {
 		--size: 40px;
 	}
+}
+
+.volna-footer {
+	padding: 80px 0;
+	background-color: @bgDark;
+	color: @white;
+	border-radius: 32px 32px 0 0;
+	position: relative;
+	overflow: hidden;
+	will-change: transform;
+	margin-top: auto;
+	--gap: 60px;
+	.volna-container {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+	@media @md {
+		padding: 40px 0;
+		--gap: 32px;
+		border-radius: 24px 24px 0 0;
+	}
+}
+
+.volna-footer-img {
+	position: absolute;
+	inset: auto 0 38px;
+	display: flex;
+	img {
+		width: 100%;
+	}
+	@media @md {
+		bottom: 24px;
+	}
+}
+
+.volna-footer-body {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+	justify-content: space-between;
+	@media @md {
+		flex-direction: column;
+		gap: 24px;
+		align-items: unset;
+	}
+	&:not(:last-child) {
+		padding-bottom: var(--gap);
+		border-bottom: solid 1px #474747;
+	}
+	.volna-logo {
+		flex: none;
+		width: 264px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		margin: 0;
+		img {
+			width: 100%;
+			max-width: unset;
+		}
+	}
+	.volna-logo-desc {
+		font-size: 14px;
+		opacity: 0.9;
+	}
+	.volna-messengers {
+		gap: 12px;
+		a {
+			width: 32px;
+		}
+	}
+}
+
+.volna-footer-contact-links {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+}
+
+.volna-footer-contact-link {
+	display: flex;
+	color: inherit;
+	gap: 10px;
+	transition: color 0.4s;
+	&:hover {
+		color: @link;
+	}
+}
+
+.volna-footer-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 32px;
+	@media @md {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+}
+
+.volna-footer-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.volna-footer-nav-title {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.volna-footer-menu {
+	columns: 2;
+	margin-bottom: -16px;
+	column-gap: 32px;
+	opacity: 0.9;
+	@media @md {
+		column-gap: 24px;
+	}
+	li {
+		padding-bottom: 16px;
+		display: flex;
+		break-inside: avoid;
+	}
+	a {
+		color: inherit;
+		transition: color 0.4s;
+		&:hover {
+			color: @link;
+		}
+	}
+}
+
+.volna-footer-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 32px;
+	@media @md {
+		gap: 24px;
+	}
+	@media @sm {
+		grid-template-columns: 1fr;
+	}
+}
+
+.volna-footer-info-item {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	--volna-content-gap: 0;
+}
+
+.volna-rules-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	li {
+		display: flex;
+	}
+	a {
+		color: inherit;
+		transition: color 0.4s;
+		&:hover {
+			color: @link;
+		}
+	}
+}
+
+.volna-developer {
+	font-size: 700;
+	color: inherit;
+	transition: color 0.4s;
+	&:hover {
+		color: @link;
+	}
+}
+
+.volna-page-content {
+	padding-bottom: 0;
 }

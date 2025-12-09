@@ -89,43 +89,6 @@ function volnaFixedHeader() {
 	}
 }
 
-/* header-menu */
-
-$(document).on('click', '.volna-header-menu .menu-item-has-children>a', function () {
-	if (window.matchMedia('(min-width:1024px)').matches) {
-		return false;
-	}
-	const li = $(this).closest('li');
-	const subMenu = li.children('.sub-menu');
-	if (li.hasClass('volna-active')) {
-		closeMenu();
-	} else {
-		closeMenu();
-		li.addClass('volna-active');
-		subMenu.stop().slideDown(400);
-	}
-	function closeMenu() {
-		const lis = li.parent().children('.menu-item-has-children');
-		lis.removeClass('volna-active');
-		lis.children('.sub-menu').stop().slideUp(400);
-	}
-	return false;
-});
-
-/* scroll */
-
-$(document).on('click', '.volna-header-menu a', function () {
-	const t = $(this);
-	if (t.attr('href').startsWith('/#')) {
-		const sectionName = t.attr('href').replace('/#', '');
-		const section = $(`.volna-section-${sectionName}`)[0];
-		if (section) {
-			section.scrollIntoView({ behavior: 'smooth' });
-		}
-		return false;
-	}
-});
-
 /* volna-accordion */
 
 $(document).on('click', '.volna-accordion-item-toggle', function () {
@@ -688,11 +651,38 @@ $(document).on('click', '.volna-share-copy', function () {
 
 /* feedback */
 
-$(document).on('click', '.volna-feedback-open', function () {
+$(document).on('click', '.volna-feedback-open', function (e) {
 	$(this).closest('.volna-feedback').addClass('volna-active');
-	return false;
 });
 
 $(document).on('click', '.volna-feedback-close', function () {
 	$(this).closest('.volna-feedback').removeClass('volna-active');
+});
+
+/* links */
+
+$(document).on('click', 'a', function () {
+	const t = $(this);
+	if (t.attr('href').startsWith('#modal')) {
+		const modalID = t.attr('href').replace('#modal', 'volna-modal');
+		volnaModal.openModal(modalID);
+		return false;
+	}
+	if (t.attr('href').startsWith('/#')) {
+		const sectionID = t.attr('href').replace('/#', '');
+		const section = $(`#${sectionID}`)[0];
+		if (section) {
+			section.scrollIntoView({ behavior: 'smooth' });
+			return false;
+		}
+	}
+	if (t.attr('href').startsWith('#')) {
+		const sectionID = t.attr('href').replace('#', '');
+		const section = $(`#${sectionID}`)[0];
+		if (section) {
+			section.scrollIntoView({ behavior: 'smooth' });
+			return false;
+		}
+	}
+	console.log(1);
 });

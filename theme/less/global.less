@@ -1219,6 +1219,9 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 40px 20px;
+	@media @xl_ {
+		margin: 0 -40px;
+	}
 	@media @md {
 		gap: 32px 12px;
 		grid-template-columns: 1fr 1fr;

@@ -138,6 +138,10 @@ add_action(
 					Field::make( 'rich_text', 'volna_footer_info', __( 'Информация', 'volna' ) ),
 					Field::make( 'text', 'volna_copyright', __( 'Копирайт', 'volna' ) )
 						->set_help_text( __( '{Y} - Поточный год', 'volna' ) ),
+					Field::make( 'text', 'volna_developer_text', __( 'Разработчик - текст', 'volna' ) )
+						->set_width( 50 ),
+					Field::make( 'text', 'volna_developer_link', __( 'Разработчик - ссылка', 'volna' ) )
+						->set_width( 50 ),
 
 				)
 			)

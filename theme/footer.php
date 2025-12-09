@@ -13,15 +13,23 @@ $volna_messengers        = carbon_get_theme_option( 'volna_messengers' );
 $volna_footer_img        = carbon_get_theme_option( 'volna_footer_img' );
 $volna_footer_tels       = carbon_get_theme_option( 'volna_footer_tels' );
 $volna_footer_emails     = carbon_get_theme_option( 'volna_footer_emails' );
+$volna_footer_btn        = carbon_get_theme_option( 'volna_footer_btn' );
 $volna_footer_menu_title = carbon_get_theme_option( 'volna_footer_menu_title' );
 $volna_footer_info_title = carbon_get_theme_option( 'volna_footer_info_title' );
 $volna_footer_info       = carbon_get_theme_option( 'volna_footer_info' );
 $volna_copyright         = carbon_get_theme_option( 'volna_copyright' );
+$volna_developer_text    = carbon_get_theme_option( 'volna_developer_text' );
+$volna_developer_link    = carbon_get_theme_option( 'volna_developer_link' );
+
+$volna_form_title = carbon_get_theme_option( 'volna_form_title' );
+$volna_form_desc  = carbon_get_theme_option( 'volna_form_desc' );
+$volna_sent_title = carbon_get_theme_option( 'volna_sent_title' );
+$volna_sent_desc  = carbon_get_theme_option( 'volna_sent_desc' );
 
 ?>
 <div class="volna-feedback">
-	<a href="#" class="volna-feedback-open swiper swiper-no-swiping">
-		<div class="swiper-wrapper">
+	<button class="volna-feedback-open swiper swiper-no-swiping">
+		<span class="swiper-wrapper">
 			<?php if ( $volna_messengers ) : ?>
 				<?php foreach ( $volna_messengers as $key => $item ) : ?>
 					<span class="swiper-slide">
@@ -39,8 +47,8 @@ $volna_copyright         = carbon_get_theme_option( 'volna_copyright' );
 					<svg class="volna-icon"><use xlink:href="#icon-sms-edit"/></svg>
 				</i>
 			<?php endif; ?>
-		</div>
-	</a>
+		</span>
+	</button>
 	<button class="volna-feedback-close">
 		<svg class="volna-icon"><use xlink:href="#icon-close"/></svg>
 	</button>
@@ -61,11 +69,104 @@ $volna_copyright         = carbon_get_theme_option( 'volna_copyright' );
 <footer class="volna-footer">
 	<div class="volna-container">
 		<div class="volna-footer-body">
-			<?php
-			// get_template_part( 'template-parts/logo' );
-			?>
+			<?php get_template_part( 'template-parts/logo' ); ?>
+			<?php if ( $volna_footer_tels ) : ?>
+				<div class="volna-footer-contact-links volna-h5">
+					<?php foreach ( $volna_footer_tels as $item ) : ?>
+						<a href="tel:<?php echo esc_attr( preg_replace( '/[^\d+]/', '', $item['tel'] ) ); ?>" class="volna-footer-contact-link">
+							<svg class="volna-icon"><use xlink:href="#icon-call"/></svg>
+							<span><?php echo esc_html( $item['tel'] ); ?></span>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			<?php endif ?>
+			<?php if ( $volna_footer_emails ) : ?>
+				<div class="volna-footer-contact-links volna-h5">
+					<?php foreach ( $volna_footer_emails as $item ) : ?>
+						<a href="mailto:<?php echo esc_attr( $item['email'] ); ?>" class="volna-footer-contact-link">
+							<svg class="volna-icon"><use xlink:href="#icon-email"/></svg>
+							<span><?php echo esc_html( $item['email'] ); ?></span>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			<?php endif ?>
+			<?php get_template_part( 'template-parts/messengers', '', array( 'messengers' => $volna_messengers ) ); ?>
+			<?php if ( $volna_footer_btn ) : ?>
+				<button class="volna-header-btn volna-btn" data-modal-open="volna-modal-application">
+					<?php echo esc_html( $volna_footer_btn ); ?>
+				</button>
+			<?php endif; ?>
+		</div>
+		<div class="volna-footer-content">
+			<?php if ( has_nav_menu( 'volna_header' ) ) : ?>
+				<nav class="volna-footer-nav">
+					<?php if ( $volna_footer_menu_title ) : ?>
+						<div class="volna-footer-nav-title">
+							<?php echo esc_html( $volna_footer_menu_title ); ?>
+						</div>
+					<?php endif; ?>
+					<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'volna_footer',
+								'container'      => false,
+								'menu_class'     => 'volna-footer-menu',
+							)
+						);
+					?>
+				</nav>
+			<?php endif; ?>
+			<?php if ( $volna_footer_info || has_nav_menu( 'volna_rules' ) || $volna_copyright || ( $volna_developer_text && $volna_developer_link ) ) : ?>
+				<div class="volna-footer-nav">
+					<?php if ( $volna_footer_info_title ) : ?>
+						<div class="volna-footer-nav-title">
+							<?php echo esc_html( $volna_footer_info_title ); ?>
+						</div>
+					<?php endif; ?>
+					<div class="volna-footer-info">
+						<?php if ( $volna_footer_info ) : ?>
+							<div class="volna-footer-info-item volna-content-text">
+								<?php
+									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									echo apply_filters( 'the_content', $volna_footer_info );
+								?>
+							</div>
+						<?php endif; ?>
+						<?php if ( has_nav_menu( 'volna_rules' ) || $volna_copyright || ( $volna_developer_text && $volna_developer_link ) ) : ?>
+							<div class="volna-footer-info-item">
+								<?php
+								if ( has_nav_menu( 'volna_rules' ) ) {
+									wp_nav_menu(
+										array(
+											'theme_location' => 'volna_rules',
+											'container'  => false,
+											'menu_class' => 'volna-rules-menu',
+										)
+									);
+								}
+								?>
+								<?php if ( $volna_copyright ) : ?>
+									<div class="volna-copyright">
+										<?php echo esc_html( str_replace( '{Y}', gmdate( 'Y' ), $volna_copyright ) ); ?>
+									</div>
+								<?php endif; ?>
+								<?php if ( $volna_developer_text && $volna_developer_link ) : ?>
+									<a href="<?php echo esc_url( $volna_developer_link ); ?>" class="volna-developer" target="_blank">
+										<?php echo esc_html( $volna_developer_text ); ?>
+									</a>
+								<?php endif; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
+	<?php if ( $volna_footer_img ) : ?>
+		<div class="volna-footer-img">
+			<?php echo wp_get_attachment_image( $volna_footer_img, 'full' ); ?>
+		</div>
+	<?php endif; ?>
 </footer>
 <div id="volna-modal-product" class="volna-modal volna-modal-product">
 	<div tabindex="-1" class="volna-modal-wrapp">
