@@ -18,7 +18,9 @@ html {
 	-webkit-tap-highlight-color: transparent;
 	display: flex;
 	position: relative;
-	scroll-padding-top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height));
+	scroll-padding-top: calc(
+		var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height) + var(--volna-head-height)
+	);
 	margin: 0 !important;
 	@media @xl {
 		@media @md_ {
@@ -42,14 +44,11 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 	position: relative;
-	padding-top: var(--wp-admin--admin-bar--height, 0px);
+	padding-top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height) + var(--volna-head-height));
 	background: @white;
 	font-size: 16px;
 	line-height: 1.2;
 	font-weight: 500;
-	@media @md {
-		padding-top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--volna-header-height));
-	}
 }
 
 #wpadminbar {

@@ -25,6 +25,17 @@ add_action(
 						Field::make( 'block_preview', 'preview', __( 'Предварительный просмотр', 'volna' ) )
 							->set_html( '<img src="' . get_template_directory_uri() . '/img/blocks/' . $block_name . '.webp" alt="">' ),
 						Field::make( 'text', 'iframe_src', __( 'Iframe src', 'volna' ) ),
+						Field::make( 'complex', 'markers', __( 'Маркеры', 'volna' ) )
+							->set_collapsed( true )
+							->set_layout( 'tabbed-vertical' )
+							->add_fields(
+								array(
+									Field::make( 'color', 'color', __( 'Цвет', 'volna' ) )
+										->set_palette( array( '#6FC331', '#C8D027', '#C34E31', '#4287FF' ) ),
+									Field::make( 'text', 'text', __( 'Текст', 'volna' ) ),
+								)
+							)
+							->set_header_template( '<%= text %>' ),
 					)
 				)
 			)
@@ -46,9 +57,18 @@ add_action(
 						>
 							<div class="volna-container">
 								<?php get_template_part( 'template-parts/section', 'title', array( 'fields' => $fields ) ); ?>
+								<?php if ( $fields['markers'] ) : ?>
+									<div class="volna-plan-markers">
+										<?php foreach ( $fields['markers'] as $item ) : ?>
+											<div class="volna-plan-marker" style="--color: <?php echo esc_attr( $item['color'] ); ?>;">
+												<?php echo esc_html( $item['text'] ); ?>
+											</div>
+										<?php endforeach; ?>
+									</div>
+								<?php endif; ?>
 								<?php if ( $fields['iframe_src'] ) : ?>
-									<div class="volna-plab-iframe">
-										<?php if ( ! volna_is_localhost() ) : ?>
+									<div class="volna-plan-iframe">
+										<?php if ( volna_is_localhost() ) : ?>
 											<iframe src="<?php echo esc_url( $fields['iframe_src'] ); ?>" loading='lazy'></iframe>
 										<?php endif; ?>
 									</div>
