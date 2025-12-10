@@ -68,7 +68,7 @@ add_action(
 								<?php endif; ?>
 								<?php if ( $fields['iframe_src'] ) : ?>
 									<div class="volna-plan-iframe">
-										<?php if ( volna_is_localhost() ) : ?>
+										<?php if ( ! volna_is_localhost() ) : ?>
 											<iframe src="<?php echo esc_url( $fields['iframe_src'] ); ?>" loading='lazy'></iframe>
 										<?php endif; ?>
 									</div>
