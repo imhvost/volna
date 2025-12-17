@@ -142,7 +142,7 @@ add_action(
 						->set_width( 50 ),
 					Field::make( 'text', 'volna_developer_link', __( 'Разработчик - ссылка', 'volna' ) )
 						->set_width( 50 ),
-
+					Field::make( 'rich_text', 'volna_cookie', __( 'Куки', 'volna' ) ),
 				)
 			)
 			->add_tab(

@@ -20,6 +20,7 @@ $volna_footer_info       = carbon_get_theme_option( 'volna_footer_info' );
 $volna_copyright         = carbon_get_theme_option( 'volna_copyright' );
 $volna_developer_text    = carbon_get_theme_option( 'volna_developer_text' );
 $volna_developer_link    = carbon_get_theme_option( 'volna_developer_link' );
+$volna_cookie            = carbon_get_theme_option( 'volna_cookie' );
 
 $volna_form_title = carbon_get_theme_option( 'volna_form_title' );
 $volna_form_desc  = carbon_get_theme_option( 'volna_form_desc' );
@@ -27,6 +28,19 @@ $volna_sent_title = carbon_get_theme_option( 'volna_sent_title' );
 $volna_sent_desc  = carbon_get_theme_option( 'volna_sent_desc' );
 
 ?>
+<?php if ( $volna_cookie ) : ?>
+	<div class="volna-cookie">
+		<div class="volna-cookie-text">
+			<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apply_filters( 'the_content', $volna_cookie );
+			?>
+		</div>
+		<button class="volna-cookie-btn volna-btn">
+			<?php esc_html_e( 'Хорошо', 'volna' ); ?>
+		</button>
+	</div>
+<?php endif; ?>
 <button class="volna-to-top" aria-label="<?php esc_attr_e( 'Наверх', 'volna' ); ?>">
 	<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path d="M4.77344 10.75C4.77344 11.1642 5.10922 11.5 5.52344 11.5C5.93765 11.5 6.27344 11.1642 6.27344 10.75H5.52344H4.77344ZM6.05377 0.21967C5.76087 -0.0732231 5.286 -0.0732231 4.99311 0.21967L0.220137 4.99264C-0.0727568 5.28553 -0.0727568 5.76041 0.220137 6.0533C0.51303 6.34619 0.987904 6.34619 1.2808 6.0533L5.52344 1.81066L9.76608 6.0533C10.059 6.34619 10.5338 6.34619 10.8267 6.0533C11.1196 5.76041 11.1196 5.28553 10.8267 4.99264L6.05377 0.21967ZM5.52344 10.75H6.27344L6.27344 0.75H5.52344H4.77344L4.77344 10.75H5.52344Z" fill="white"/>

@@ -707,3 +707,15 @@ $(window).on('load scroll resize', function () {
 $(document).on('click', '.volna-to-top', function () {
 	$('body')[0].scrollIntoView({ behavior: 'smooth' });
 });
+
+/* cookie */
+
+if (!localStorage.getItem('volna-cookie')) {
+	$('.volna-cookie').addClass('volna-active');
+}
+
+$(document).on('click', '.volna-cookie-btn', function () {
+	$('.volna-cookie').removeClass('volna-active');
+	localStorage.setItem('volna-cookie', 'true');
+	return false;
+});
